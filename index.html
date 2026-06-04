@@ -215,7 +215,7 @@
   <div class="presents">presents: <em>The my-AI suite.</em></div>
   <h1>The Thesis Methodology of the<br><em>Deterministic Scaffold.</em></h1>
   <p class="lead">
-    One methodology. Four tools. Each one a different expression of the same
+    One methodology. Five tools. Each one a different expression of the same
     instinct — human-owned constraints, AI-powered synthesis, and verification
     at every boundary. The model proposes. Python disposes.
   </p>
@@ -285,44 +285,43 @@
       <div class="tool-pronounce">pronounced: <em>my-script</em></div>
     </div>
     <p class="tool-desc">
-      An interview-driven script writer. An LLM conducts a creative
-      conversation — asking questions, proposing scene breakdowns, reflecting
-      back its understanding — until it has enough to write a complete,
-      detailed production spec. It decides when the interview ends. Python
-      scores the result.
+      The universal writer for the whole suite. An LLM conducts a creative
+      interview — asking, proposing, reflecting back — until it has enough to
+      write a complete, detailed spec. One engine, two targets: a
+      <code>ProductionSpec</code> for my-AI-scene, or a <code>SongSpec</code>
+      for my-AI-beats. The LLM decides when the interview ends. Python scores
+      the result.
     </p>
     <div class="moves-mini">
       <div class="move-mini e">
         <div class="ml">Explain</div>
-        <p>The interview is the constraint-gathering phase. The user's vision
-        gets encoded through dialogue. The <code>ProductionSpec</code> schema
-        defines every field that must be filled — the LLM's questions serve
-        the schema. The scoring rubric is in the system prompt before the
-        LLM writes a word.</p>
+        <p>The interview is the constraint-gathering phase. The chosen target's
+        schema defines every field that must be filled — the LLM's questions
+        serve the schema. The scoring rubric is in the system prompt before the
+        LLM writes a word, so it knows the bar it's aiming for.</p>
       </div>
       <div class="move-mini s">
         <div class="ml">Synthesize</div>
         <p>Once the LLM is confident it can score well, it generates the full
-        spec from the conversation — every beat, every narration line, every
-        footage prompt, every music keyword. Not It Protocol level of detail.</p>
+        spec from the conversation — every beat and narration line for video,
+        or every section, prompt and energy value for a song. Reference-quality
+        detail, on demand.</p>
       </div>
       <div class="move-mini v">
         <div class="ml">Verify</div>
-        <p><code>parse_spec()</code> for structural validity. Then
-        <code>score_spec()</code> — a pure Python quality judge scoring
-        completeness, narration substance, footage specificity, music
-        richness, and grade variety out of 100. Below 75: feedback fed back,
-        LLM revises. The scorer is never an LLM.</p>
+        <p>A target-specific pure-Python judge scores out of 100 — video on
+        narration/footage/grade, music on prompt specificity and the
+        <em>energy arc</em>. Below 75, the breakdown feeds back and the LLM
+        revises. The scorer is never an LLM.</p>
       </div>
     </div>
     <div class="best-at">
       <div class="bl">Does best</div>
-      <p>Collaborative spec authoring where quality is enforced, not hoped
-      for. The scoring incentive — knowing Python will judge the output
-      before it generates — shapes what the LLM produces. It won't settle
-      for vague narration or generic footage prompts because it knows they
-      score low. The conversation extracts the user's real vision; the scorer
-      ensures the spec reflects it with specificity.</p>
+      <p>Collaborative spec authoring where quality is enforced, not hoped for.
+      The scoring incentive — knowing Python will judge the output before it
+      generates — shapes what the LLM produces. It won't settle for vague
+      prompts or a flat energy arc because it knows they score low. Proven
+      live: a synthwave conversation produced a SongSpec that scored 98/100.</p>
     </div>
   </div>
 
@@ -371,6 +370,55 @@
       music drops without failing the episode, narration retries on
       transcript mismatch. The worst case is a slightly simpler video, never
       a corrupt one.</p>
+    </div>
+  </div>
+
+  <!-- my-AI-beats -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name">my-<b>AI</b>-beats</div>
+        <span class="tool-tag tag-productions">Productions</span>
+      </div>
+      <div class="tool-pronounce">pronounced: <em>my-beats</em></div>
+    </div>
+    <p class="tool-desc">
+      A local-first music generator. It takes a <code>SongSpec</code> — section
+      structure, key, tempo, and an energy value per section — and renders a
+      complete, mastered song. MusicGen synthesizes each section, CLAP scores
+      it, ffmpeg crossfades and loudness-normalizes the master. Entirely local,
+      entirely free.
+    </p>
+    <div class="moves-mini">
+      <div class="move-mini e">
+        <div class="ml">Explain</div>
+        <p>The <code>SongSpec</code> is the constraint document. Every section
+        declares its prompt, bar count, and <em>energy</em> (0–1) before any
+        model runs. The energy arc — quiet intro, towering chorus, soft outro —
+        is the song's emotional shape, authored up front.</p>
+      </div>
+      <div class="move-mini s">
+        <div class="ml">Synthesize</div>
+        <p>MusicGen renders each section. <strong>The hidden gem:</strong> every
+        section after the first is conditioned on the last few seconds of the
+        previous one — audio continuation. Sections don't stitch, they
+        <em>flow</em>. Bark adds optional sung vocals on the side.</p>
+      </div>
+      <div class="move-mini v">
+        <div class="ml">Verify</div>
+        <p>CLAP scores each section against its prompt (<code>section_verify</code>);
+        duration and final-stitch gates are blocking. Vocals are
+        <em>non-blocking</em> — a failed vocal is dropped, the instrumental
+        ships. CLAP is the judge; MusicGen never grades itself.</p>
+      </div>
+    </div>
+    <div class="best-at">
+      <div class="bl">Does best</div>
+      <p>Complete instrumental songs with a real emotional arc, built section by
+      section and flowing as one piece thanks to audio continuation. The same
+      blocking/non-blocking doctrine as my-AI-stories applies: the instrumental
+      is the premise, vocals are enhancement. Proven live: an 8-section indie
+      folk track, 3:48, mastered to −14 LUFS.</p>
     </div>
   </div>
 
@@ -583,11 +631,11 @@
       <span class="ps done">spec_ready</span>
     </div>
     <p class="pipe-note">
-      The LLM interviews until it can score well, then generates the
-      <code>ProductionSpec</code>. Two blocking gates in sequence:
-      <code>parse_spec()</code> checks structural validity; <code>score_spec()</code>
-      checks quality (completeness, narration substance, footage specificity,
-      music richness, grade variety). Both must pass. Failure feeds back
+      The LLM interviews until it can score well, then generates a spec for the
+      chosen target — a <code>ProductionSpec</code> (video) or a
+      <code>SongSpec</code> (music). Two blocking gates in sequence:
+      <code>parse</code> checks structural validity; a target-specific
+      <code>score</code> checks quality. Both must pass. Failure feeds back
       as context for the next attempt.
     </p>
   </div>
@@ -612,6 +660,28 @@
       <strong>Non-blocking ○</strong>: a music bed that fails its gate is
       dropped — the episode continues without it. The worst case is a
       slightly simpler video, never a corrupt one.
+    </p>
+  </div>
+
+  <!-- my-AI-beats pipeline -->
+  <div class="pipeline" style="margin-bottom:16px">
+    <h4 style="color:var(--accent2)">my-AI-beats</h4>
+    <div class="pipe-stages">
+      <span class="ps">spec_load</span><span class="pa">→</span>
+      <span class="ps gate-b">section_verify ●</span><span class="pa">→</span>
+      <span class="ps gate-b">duration_verify ●</span><span class="pa">↝</span>
+      <span class="ps">continuation</span><span class="pa">→</span>
+      <span class="ps gate-nb">vocal_verify ○</span><span class="pa">→</span>
+      <span class="ps gate-b">stitch_verify ●</span><span class="pa">→</span>
+      <span class="ps done">song.wav</span>
+    </div>
+    <p class="pipe-note">
+      Per section. <strong>The hidden gem ↝</strong>: each section is conditioned
+      on the tail of the previous one, so the song flows. <strong>Blocking ●</strong>:
+      CLAP scores the audio against the section prompt; duration must match the
+      bar count; ffprobe verifies the final master. <strong>Non-blocking ○</strong>:
+      a failed Bark vocal is dropped — the instrumental ships. Retry then a
+      tone-pad fallback keeps a bad section from corrupting the song.
     </p>
   </div>
 
