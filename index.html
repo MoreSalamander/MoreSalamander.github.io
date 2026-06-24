@@ -4,127 +4,840 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MoreSalamander — The Deterministic Scaffold</title>
-<meta name="description" content="A studio built on one idea: the model proposes, a deterministic scaffold disposes. Reliable AI across knowledge, story, video, music, code, games, and play — every project an instance of the same thesis." />
 <style>
   :root {
-    --bg:#0a0c11; --panel:#12151c; --line:#212733; --ink:#e9edf3; --dim:#8b97a8;
-    --accent:#22d3ee;
-    --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --bg: #0e0f13; --surface: #171922; --surface2: #1f2230; --ink: #e7e9ee;
+    --muted: #8b90a0; --line: #2a2e3e; --accent: #e08a3c; --accent2: #6db3f2;
+    --ok: #5ec27e; --bad: #e06c6c; --warn: #e0c14a; --neon: #39ff14;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --serif: Georgia, "Times New Roman", serif;
   }
-  *{box-sizing:border-box;} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;}
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 22px 120px;}
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 15px; line-height: 1.7;
+  }
 
-  header{padding:96px 0 30px;text-align:center;background:radial-gradient(120% 70% at 50% -20%,rgba(34,211,238,.10),transparent 60%);}
-  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
-  h1{font-size:54px;line-height:1.04;margin:0 0 20px;letter-spacing:-1.5px;font-weight:800;}
-  .lede{font-size:19px;color:var(--dim);max-width:660px;margin:0 auto;} .lede strong{color:var(--ink);font-weight:600;}
-  .thesis{max-width:680px;margin:26px auto 0;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:18px 22px;font-size:15.5px;color:var(--dim);}
-  .thesis b{color:var(--ink);} .thesis .em{color:var(--accent);}
+  /* ---- NAV ---- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(14,15,19,.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 40px; display: flex; align-items: center; gap: 32px;
+  }
+  nav .brand { font-size: 15px; font-weight: 700; color: var(--neon);
+               text-decoration: none; text-shadow: 0 0 12px rgba(57,255,20,.4); }
+  nav .brand span { color: var(--accent); }
+  nav a { color: var(--muted); font-size: 12px; text-decoration: none;
+          letter-spacing: .04em; transition: color .15s; }
+  nav a:hover { color: var(--ink); }
+  nav .motto { margin-left: auto; font-size: 11px; color: var(--muted);
+               font-style: italic; }
 
-  h2{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin:62px 0 4px;}
-  .h2sub{font-size:15px;color:var(--dim);margin:0 0 18px;}
+  /* ---- LAYOUT ---- */
+  .hero {
+    padding: 80px 40px 60px; max-width: 860px; margin: 0 auto;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .eyebrow { color: var(--accent); font-size: 11px; text-transform: uppercase;
+                   letter-spacing: .14em; margin-bottom: 10px; }
+  .hero .presents { font-size: clamp(16px, 2vw, 22px); font-weight: 400;
+                    color: var(--muted); margin-bottom: 10px; letter-spacing: .01em; }
+  .hero .presents em { font-style: normal; font-weight: 700;
+                       color: var(--ink); }
+  .hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; margin: 0 0 20px;
+             line-height: 1.2; }
+  .hero h1 em { color: var(--accent2); font-style: normal; }
+  .hero .lead { font-size: 17px; color: var(--muted); max-width: 620px; line-height: 1.6; }
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
-  .card{position:relative;display:block;border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;background:var(--panel);overflow:hidden;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;}
-  .card::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--c,#22d3ee);opacity:.85;}
-  .card:hover{transform:translateY(-3px);border-color:var(--c,#22d3ee);box-shadow:0 10px 30px -12px var(--c,#22d3ee);}
-  .cname{font-size:18px;font-weight:700;color:var(--c,#22d3ee);letter-spacing:-.3px;}
-  .ctag{margin:7px 0 12px;font-size:14px;color:var(--ink);line-height:1.5;}
-  .cmeta{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--dim);text-transform:uppercase;}
-  .cmeta .ext{color:var(--c,#22d3ee);}
+  section { max-width: 860px; margin: 0 auto; padding: 60px 40px; }
+  section + section { border-top: 1px solid var(--line); }
 
-  footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);text-align:center;font-family:var(--mono);font-size:12px;color:var(--dim);}
-  footer a{color:var(--accent);}
-  @media(max-width:560px){h1{font-size:38px;}}
+  h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .14em;
+       color: var(--accent); margin: 0 0 24px; }
+  h3 { font-size: 20px; font-weight: 700; margin: 0 0 10px; }
+  h4 { font-size: 13px; font-weight: 700; text-transform: uppercase;
+       letter-spacing: .08em; color: var(--muted); margin: 0 0 8px; }
+  p { margin: 0 0 16px; color: var(--ink); }
+  p.muted { color: var(--muted); font-size: 14px; }
+
+  /* ---- THREE MOVES ---- */
+  .moves { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 32px; }
+  .move {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 24px;
+  }
+  .move .num { font-size: 36px; font-weight: 900; color: var(--line);
+               line-height: 1; margin-bottom: 10px; }
+  .move .label { font-size: 13px; font-weight: 700; text-transform: uppercase;
+                 letter-spacing: .08em; margin-bottom: 8px; }
+  .move.explain  .num, .move.explain  .label { color: var(--accent); }
+  .move.synth    .num, .move.synth    .label { color: var(--accent2); }
+  .move.verify   .num, .move.verify   .label { color: var(--ok); }
+  .move p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+  .rule {
+    background: var(--surface2); border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 28px 0;
+    font-size: 15px; color: var(--ink); font-style: italic;
+  }
+
+  /* ---- TOOL CARDS ---- */
+  .tool-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 14px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .tool-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .tool-header-row { display: flex; align-items: baseline; gap: 14px; }
+  .tool-name { font-size: 22px; font-weight: 800; }
+  .tool-name b { color: var(--accent); }
+  .tool-pronounce { font-size: 12px; color: var(--muted); font-style: italic;
+                    letter-spacing: .02em; }
+  .tool-repo { margin-top: 6px; }
+  .tool-repo a { font-family: var(--mono); font-size: 11px; color: var(--accent2);
+                 text-decoration: none; opacity: .85; transition: .15s; }
+  .tool-repo a:hover { opacity: 1; text-decoration: underline;
+                       text-shadow: 0 0 8px rgba(109,179,242,.4); }
+  .tool-tag {
+    font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .tag-studiolab  { background: rgba(109,179,242,.12); color: var(--accent2); }
+  .tag-productions { background: rgba(224,138,60,.12); color: var(--accent); }
+
+  .tool-desc { font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+
+  .moves-mini { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+  .move-mini {
+    background: var(--surface2); border: 1px solid var(--line);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .move-mini .ml { font-size: 10px; font-weight: 700; text-transform: uppercase;
+                   letter-spacing: .08em; margin-bottom: 4px; }
+  .move-mini.e .ml { color: var(--accent); }
+  .move-mini.s .ml { color: var(--accent2); }
+  .move-mini.v .ml { color: var(--ok); }
+  .move-mini p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.45; }
+
+  .best-at {
+    background: rgba(94,194,126,.06); border: 1px solid rgba(94,194,126,.2);
+    border-radius: 8px; padding: 12px 16px;
+  }
+  .best-at .bl { font-size: 10px; font-weight: 700; color: var(--ok);
+                 text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+  .best-at p { font-size: 13px; color: var(--ink); margin: 0; line-height: 1.5; }
+
+  /* ---- PIPELINE FLOW ---- */
+  .pipeline {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 28px 32px;
+  }
+  .flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin-top: 20px; }
+  .flow-node {
+    background: var(--surface2); border: 1px solid var(--line);
+    border-radius: 8px; padding: 12px 18px; text-align: center; min-width: 140px;
+  }
+  .flow-node .fn { font-size: 13px; font-weight: 700; }
+  .flow-node .fn b { color: var(--accent); }
+  .flow-node .fd { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .flow-arrow {
+    font-size: 20px; color: var(--line); padding: 0 10px; flex-shrink: 0;
+  }
+  .flow-artifact {
+    font-size: 11px; color: var(--accent2); font-family: var(--mono);
+    padding: 4px 10px; background: rgba(109,179,242,.08);
+    border: 1px solid rgba(109,179,242,.2); border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* ---- PIPELINE STAGES ---- */
+  .pipe-stages { display:flex; flex-wrap:wrap; align-items:center;
+                 gap:4px; margin:10px 0 10px; }
+  .ps { font-family: var(--mono); font-size: 11px; padding: 4px 9px;
+        border-radius: 5px; border: 1px solid var(--line);
+        background: var(--surface2); color: var(--ink); white-space:nowrap; }
+  .pa { color: var(--line); font-size: 14px; padding: 0 2px; }
+  .ps.gate-b  { border-color: rgba(94,194,126,.4);
+                background: rgba(94,194,126,.08); color: var(--ok); }
+  .ps.gate-nb { border-color: rgba(224,193,74,.4);
+                background: rgba(224,193,74,.08); color: var(--warn); }
+  .ps.gate-retry { border-color: rgba(109,179,242,.4);
+                   background: rgba(109,179,242,.08); color: var(--accent2); }
+  .ps.done    { border-color: rgba(224,138,60,.4);
+                background: rgba(224,138,60,.08); color: var(--accent); }
+  .pipe-note  { font-size: 12px; color: var(--muted); margin: 0;
+                line-height: 1.55; }
+
+  /* ---- PRINCIPLE TABLE ---- */
+  .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .principle {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 8px; padding: 16px 18px;
+  }
+  .principle .pt { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .principle p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--line); padding: 32px 40px;
+    max-width: 860px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 12px;
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  code {
+    font-family: var(--mono); font-size: 12px; background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px;
+    color: var(--accent2);
+  }
+
+  @media (max-width: 680px) {
+    .moves, .moves-mini, .principles { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
+    nav { padding: 12px 20px; gap: 16px; }
+    section, .hero, footer { padding-left: 20px; padding-right: 20px; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <div class="kicker">MoreSalamander · StudioLabs</div>
-  <h1>The Deterministic Scaffold</h1>
-  <p class="lede">A studio built on one idea: an AI model is a powerful but unreliable <strong>proposer</strong>,
-  so you wrap it in a deterministic scaffold that <strong>decides</strong> what's allowed to be true. Every
-  project below is the same thesis in a different medium.</p>
-  <div class="thesis"><b>The model proposes; the scaffold disposes.</b> Knowledge, story, video, music, code,
-  games, play — <span class="em">the model fills it in, deterministic gates decide what survives.</span></div>
-</header>
+<nav>
+  <a class="brand" href="#"><span>More</span>Salamander</a>
+  <a href="#thesis">The Thesis</a>
+  <a href="#tools">The Tools</a>
+  <a href="#pipeline">The Pipeline</a>
+  <a href="#principles">Principles</a>
+  <a href="projects.html" style="color:var(--neon)">All Projects ↗</a>
+  <span class="motto">Scientia Ludusque</span>
+</nav>
 
-<h2>The thesis, proven</h2>
-<div class="h2sub">Where the idea is the whole point.</div>
-<div class="grid">
-  <a class="card" style="--c:#22d3ee" href="https://moresalamander.github.io/veritas/">
-    <div class="cname">Veritas Dynamics</div>
-    <div class="ctag">An LLM proposes; a deterministic scaffold decides. Reliable autonomous organizations, built as a trust system.</div>
-    <div class="cmeta">autonomous orgs · verification</div></a>
-  <a class="card" style="--c:#d9b25f" href="https://moresalamander.github.io/the-house-always-wins/">
-    <div class="cname">The House Always Wins</div>
-    <div class="ctag">A cinematic AI heist you watch, not play — six AI crew rob a casino while a seed-locked brain keeps the house's edge.</div>
-    <div class="cmeta">simulation · game AI</div></a>
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="eyebrow"><span style="color:var(--neon);text-shadow:0 0 10px rgba(57,255,20,.35)">MoreSalamander</span> StudioLabs Productions</div>
+  <div class="presents">presents: <em>The my-AI suite.</em></div>
+  <h1>The Thesis Methodology of the<br><em>Deterministic Scaffold.</em></h1>
+  <p class="lead">
+    One methodology. Five tools. Each one a different expression of the same
+    instinct — human-owned constraints, AI-powered synthesis, and verification
+    at every boundary. The model proposes. Python disposes.
+  </p>
 </div>
 
-<h2>The my-AI suite</h2>
-<div class="h2sub">Local-first, verification-driven generators — one thesis, six media.</div>
-<div class="grid">
-  <a class="card" style="--c:#22d3ee" href="https://moresalamander.github.io/myAIstro/">
-    <div class="cname">my-AI-stro</div>
-    <div class="ctag">Turns school lessons into a queryable Source of Truth — the maestro that conducts your knowledge.</div>
-    <div class="cmeta">knowledge</div></a>
-  <a class="card" style="--c:#a78bfa" href="https://moresalamander.github.io/myAIstory/">
-    <div class="cname">my-AI-story</div>
-    <div class="ctag">A multi-episode story generator with multi-voice narration. Many episodes, one story — continuity is the thread.</div>
-    <div class="cmeta">serialized fiction · TTS</div></a>
-  <a class="card" style="--c:#fbbf24" href="https://moresalamander.github.io/myAIscene/">
-    <div class="cname">my-AI-scene</div>
-    <div class="ctag">A production guide becomes a graded, scored, assembled MP4. Local models synthesize; Python verifiers cut.</div>
-    <div class="cmeta">video</div></a>
-  <a class="card" style="--c:#34d399" href="https://moresalamander.github.io/myAIscript/">
-    <div class="cname">my-AI-script</div>
-    <div class="ctag">The writer of the trio. Brief in, validated spec out — a ProductionSpec or SongSpec the engines can render.</div>
-    <div class="cmeta">authoring</div></a>
-  <a class="card" style="--c:#ec4899" href="https://moresalamander.github.io/myAIbeats/">
-    <div class="cname">my-AI-beats</div>
-    <div class="ctag">A local music generator. A spec in, a song out — sectioned, continued, CLAP-gated, stitched. The gate has ears.</div>
-    <div class="cmeta">music</div></a>
-  <a class="card" style="--c:#38bdf8" href="https://moresalamander.github.io/myAIchat/">
-    <div class="cname">my-AI-chat</div>
-    <div class="ctag">A fully-customizable UI for your local Ollama models. No build step, no cloud — your models, your interface.</div>
-    <div class="cmeta">tooling · local LLM</div></a>
-</div>
+<!-- ===== THE THESIS ===== -->
+<section id="thesis">
+  <h2>The Thesis</h2>
+  <h3>The Deterministic Scaffold</h3>
+  <p>
+    Every MoreSalamander project is built on the same underlying principle:
+    a well-fenced model inside a deterministic scaffold becomes reliable as a
+    system, because the unreliable component is wrapped in reliable ones that
+    decide whether to trust each output — when to retry, when to skip,
+    when to score, when to commit.
+  </p>
+  <p>
+    This isn't a preference picked up from a book. It was earned through two
+    specific lineages: the pipeline-shape discipline (from the Build It
+    Publisher — named stages, explicit data flow, atomic responsibility),
+    and the verification discipline (from MyMaestro's failure — a study tool
+    that hallucinated, proving that verification must be a system property,
+    not a soft warning at the UI).
+  </p>
 
-<h2>Products</h2>
-<div class="h2sub">Apps with a real engine behind the screen.</div>
-<div class="grid">
-  <a class="card" style="--c:#10b981" href="https://moresalamander.github.io/SprinklerPro3D/">
-    <div class="cname">SprinklerPro 3D</div>
-    <div class="ctag">Design a residential sprinkler system in 3D to real irrigation-engineering rules, with a quality gate that verifies coverage.</div>
-    <div class="cmeta">irrigation design</div></a>
-  <a class="card" style="--c:#2dd4bf" href="https://moresalamander.github.io/Living-Painting-Studio/">
-    <div class="cname">Living Painting Studio</div>
-    <div class="ctag">Describe a scene; AI paints it; then it comes alive — drifting weather, wandering creatures, shifting light. Not a video, a living canvas.</div>
-    <div class="cmeta">generative art</div></a>
-  <a class="card" style="--c:#f97316" href="https://build-it-mauve.vercel.app">
-    <div class="cname">build-it</div>
-    <div class="ctag">A calm, Lego-manual reader for learning to code by hand-typing real programs, one verified step at a time.</div>
-    <div class="cmeta">learn to code · <span class="ext">live ↗</span></div></a>
-</div>
+  <div class="rule">
+    "The model proposes. Python disposes."
+  </div>
 
-<h2>Tools</h2>
-<div class="h2sub">Build the thing that builds the thing.</div>
-<div class="grid">
-  <a class="card" style="--c:#8b5cf6" href="https://moresalamander.github.io/vibe-engine/">
-    <div class="cname">Vibe Engine</div>
-    <div class="ctag">Describe a game; it interviews you, writes a design doc, and scaffolds a playable Unreal Engine 5 project from it.</div>
-    <div class="cmeta">game scaffolding · UE5</div></a>
-</div>
+  <div class="moves">
+    <div class="move explain">
+      <div class="num">01</div>
+      <div class="label">Explain</div>
+      <p>Write the constraints before any AI synthesis happens. Constraint
+      documents, schemas, scoring rubrics, series style guides. These are
+      the doctrine. The model works inside them — it never edits them.</p>
+    </div>
+    <div class="move synth">
+      <div class="num">02</div>
+      <div class="label">Synthesize</div>
+      <p>Let the model do the high-volume work — drafting prose, generating
+      images, writing scripts, composing narration. The model is one component
+      in the system, not the whole system.</p>
+    </div>
+    <div class="move verify">
+      <div class="num">03</div>
+      <div class="label">Verify</div>
+      <p>Wrap every model output in pure Python that decides whether to trust
+      the result. The grader can never be an LLM — because the grader cannot
+      be the thing it grades. Reject what fails. Score what passes. Persist
+      only what survives.</p>
+    </div>
+  </div>
+</section>
 
+<!-- ===== THE TOOLS ===== -->
+<section id="tools">
+  <h2>The Tools</h2>
+
+  <!-- my-AI-script -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name">my-<b>AI</b>-script</div>
+        <span class="tool-tag tag-studiolab">StudioLabs</span>
+      </div>
+      <div class="tool-pronounce">pronounced: <em>my-script</em></div>
+      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIscript" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIscript</a></div>
+    </div>
+    <p class="tool-desc">
+      The universal writer for the whole suite. An LLM conducts a creative
+      interview — asking, proposing, reflecting back — until it has enough to
+      write a complete, detailed spec. One engine, two targets: a
+      <code>ProductionSpec</code> for my-AI-scene, or a <code>SongSpec</code>
+      for my-AI-beats. The LLM decides when the interview ends. Python scores
+      the result.
+    </p>
+    <div class="moves-mini">
+      <div class="move-mini e">
+        <div class="ml">Explain</div>
+        <p>The interview is the constraint-gathering phase. The chosen target's
+        schema defines every field that must be filled — the LLM's questions
+        serve the schema. The scoring rubric is in the system prompt before the
+        LLM writes a word, so it knows the bar it's aiming for.</p>
+      </div>
+      <div class="move-mini s">
+        <div class="ml">Synthesize</div>
+        <p>Once the LLM is confident it can score well, it generates the full
+        spec from the conversation — every beat and narration line for video,
+        or every section, prompt and energy value for a song. Reference-quality
+        detail, on demand.</p>
+      </div>
+      <div class="move-mini v">
+        <div class="ml">Verify</div>
+        <p>A target-specific pure-Python judge scores out of 100 — video on
+        narration/footage/grade, music on prompt specificity and the
+        <em>energy arc</em>. Below 75, the breakdown feeds back and the LLM
+        revises. The scorer is never an LLM.</p>
+      </div>
+    </div>
+    <div class="best-at">
+      <div class="bl">Does best</div>
+      <p>Collaborative spec authoring where quality is enforced, not hoped for.
+      The scoring incentive — knowing Python will judge the output before it
+      generates — shapes what the LLM produces. It won't settle for vague
+      prompts or a flat energy arc because it knows they score low. Proven
+      live: a synthwave conversation produced a SongSpec that scored 98/100.</p>
+    </div>
+  </div>
+
+  <!-- my-AI-scene -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name">my-<b>AI</b>-scene</div>
+        <span class="tool-tag tag-productions">Productions</span>
+      </div>
+      <div class="tool-pronounce">pronounced: <em>my-scene</em></div>
+      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIscene" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIscene</a></div>
+    </div>
+    <p class="tool-desc">
+      A local-first video production engine. It takes a
+      <code>ProductionSpec</code> — the machine-readable form of a
+      production guide — and renders it into a graded, scored, assembled
+      MP4. Narration via Kokoro TTS, visuals via SDXL-turbo, music via
+      MusicGen, final assembly via ffmpeg. Entirely local, entirely free.
+    </p>
+    <div class="moves-mini">
+      <div class="move-mini e">
+        <div class="ml">Explain</div>
+        <p>The <code>ProductionSpec</code> is the constraint document.
+        Every beat declares its narration, footage prompt, music keywords,
+        and color grade before any model runs. The spec is the law.</p>
+      </div>
+      <div class="move-mini s">
+        <div class="ml">Synthesize</div>
+        <p>Kokoro speaks. SDXL-turbo generates stills. MusicGen composes
+        beds. ffmpeg Ken Burns the stills into motion. Each model fills
+        one stage of the pipeline and no other.</p>
+      </div>
+      <div class="move-mini v">
+        <div class="ml">Verify</div>
+        <p>Trust separation baked in: Whisper transcribes Kokoro's output
+        for <code>narration_verify</code>. CLIP scores SDXL's output for
+        <code>footage_verify</code>. ffprobe measures the final MP4 for
+        <code>assembly_verify</code>. The generator never self-grades.</p>
+      </div>
+    </div>
+    <div class="best-at">
+      <div class="bl">Does best</div>
+      <p>Deterministic video production from a defined spec. Because every
+      stage is verified independently of the model that produced it, the
+      pipeline degrades gracefully — footage fallbacks replace failed stills,
+      music drops without failing the episode, narration retries on
+      transcript mismatch. The worst case is a slightly simpler video, never
+      a corrupt one.</p>
+    </div>
+  </div>
+
+  <!-- my-AI-beats -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name">my-<b>AI</b>-beats</div>
+        <span class="tool-tag tag-productions">Productions</span>
+      </div>
+      <div class="tool-pronounce">pronounced: <em>my-beats</em></div>
+      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIbeats" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIbeats</a></div>
+    </div>
+    <p class="tool-desc">
+      A local-first music generator. It takes a <code>SongSpec</code> — section
+      structure, key, tempo, and an energy value per section — and renders a
+      complete, mastered song. MusicGen synthesizes each section, CLAP scores
+      it, ffmpeg crossfades and loudness-normalizes the master. Entirely local,
+      entirely free.
+    </p>
+    <div class="moves-mini">
+      <div class="move-mini e">
+        <div class="ml">Explain</div>
+        <p>The <code>SongSpec</code> is the constraint document. Every section
+        declares its prompt, bar count, and <em>energy</em> (0–1) before any
+        model runs. The energy arc — quiet intro, towering chorus, soft outro —
+        is the song's emotional shape, authored up front.</p>
+      </div>
+      <div class="move-mini s">
+        <div class="ml">Synthesize</div>
+        <p>MusicGen renders each section. <strong>The hidden gem:</strong> every
+        section after the first is conditioned on the last few seconds of the
+        previous one — audio continuation. Sections don't stitch, they
+        <em>flow</em>. Bark adds optional sung vocals on the side.</p>
+      </div>
+      <div class="move-mini v">
+        <div class="ml">Verify</div>
+        <p>CLAP scores each section against its prompt (<code>section_verify</code>);
+        duration and final-stitch gates are blocking. Vocals are
+        <em>non-blocking</em> — a failed vocal is dropped, the instrumental
+        ships. CLAP is the judge; MusicGen never grades itself.</p>
+      </div>
+    </div>
+    <div class="best-at">
+      <div class="bl">Does best</div>
+      <p>Complete instrumental songs with a real emotional arc, built section by
+      section and flowing as one piece thanks to audio continuation. The same
+      blocking/non-blocking doctrine as my-AI-stories applies: the instrumental
+      is the premise, vocals are enhancement. Proven live: an 8-section indie
+      folk track, 3:48, mastered to −14 LUFS.</p>
+    </div>
+  </div>
+
+  <!-- my-AI-story -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name">my-<b>AI</b>-stories</div>
+        <span class="tool-tag tag-studiolab">StudioLabs</span>
+      </div>
+      <div class="tool-pronounce">pronounced: <em>my-stories</em></div>
+      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIstory" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIstory</a></div>
+    </div>
+    <p class="tool-desc">
+      A long-form, multi-episode serial fiction engine with multi-voice local
+      TTS. You provide the series bible — characters, theme, plot direction.
+      The system generates full audio episodes, verified beat by beat, with
+      distinct voices per character and a sound design layer that enhances
+      without ever failing the episode.
+    </p>
+    <div class="moves-mini">
+      <div class="move-mini e">
+        <div class="ml">Explain</div>
+        <p>The series bible is the constraint document. Characters, world
+        rules, plot arcs — written before any synthesis. The LLM fills
+        episodes inside the bible. It never edits the bible.</p>
+      </div>
+      <div class="move-mini s">
+        <div class="ml">Synthesize</div>
+        <p>Ollama generates episode drafts scene by scene. Piper TTS
+        renders each line in the character's assigned voice. Sound cues
+        placed at narrative anchors by a non-blocking mixer.</p>
+      </div>
+      <div class="move-mini v">
+        <div class="ml">Verify</div>
+        <p>Three blocking gates: continuity (characters consistent with
+        bible), structure (beats well-formed), speaker (every line assigned).
+        One non-blocking gate: <code>cue_verify</code> — unresolvable
+        sound cues are dropped, never fail the episode.</p>
+      </div>
+    </div>
+    <div class="best-at">
+      <div class="bl">Does best</div>
+      <p>Episodic narrative audio that stays internally consistent across
+      episodes. The continuity gate means characters don't contradict
+      themselves. The non-blocking sound doctrine means "continuity is the
+      premise, sound is enhancement" — a principle that keeps quality high
+      without making the pipeline fragile.</p>
+    </div>
+  </div>
+
+  <!-- my-AI-stro — the crowning jewel -->
+  <div class="tool-card" style="border-color: rgba(224,138,60,.4);
+       background: linear-gradient(135deg, #171922 0%, #1d1a14 100%);">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name">my-<b>AI</b>-stro</div>
+        <span class="tool-tag tag-studiolab">StudioLabs</span>
+        <span class="tool-tag" style="background:rgba(224,138,60,.18);
+              color:var(--accent);margin-left:4px;">The Crowning Jewel</span>
+      </div>
+      <div class="tool-pronounce">pronounced: <em>my-stro</em> &nbsp;·&nbsp; like Maestro — but inside Python, the AI is silent (in hallucination)</div>
+      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIstro" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIstro</a></div>
+    </div>
+    <p class="tool-desc">
+      A local-first, self-improving personal knowledge system. Paste a lesson
+      from anywhere — a course, an article, a video transcript — and the
+      system summarizes it, validates it, and stores it in a Source of Truth.
+      Downstream agents (quizzer, advisor, classroom, general chat) reason
+      over the SOT instead of re-summarizing on every query. Four local
+      Ollama models, each assigned a specific role — the model that owns the
+      SOT never handles ungrounded chat. The system gets better the more it
+      is used.
+    </p>
+    <div class="moves-mini">
+      <div class="move-mini e">
+        <div class="ml">Explain</div>
+        <p>Four Ollama models with deliberate role separation:
+        <code>llama3:8b</code> summarizes (owns the SOT),
+        <code>llama3.1:8b</code> advises (128K context, study guides),
+        <code>llama3.2</code> quizzes, chats, and teaches,
+        <code>mistral</code> judges — never a model that generated
+        the content it is scoring.</p>
+      </div>
+      <div class="move-mini s">
+        <div class="ml">Synthesize</div>
+        <p>LLM extracts structured summaries, code snippets, key concepts.
+        Chunked for long lessons. Advisor generates full course-wide study
+        plans from SOT context. Classroom builds interactive lesson sessions.</p>
+      </div>
+      <div class="move-mini v">
+        <div class="ml">Verify</div>
+        <p>Grounding gates at every persistence boundary — SOT write, Notebook
+        save, Classroom plan persist, raise-hand runtime answers. The audit
+        loop's Judge is a deterministic Python formula, not an LLM. It runs
+        continuously and rotates the SOT toward more-grounded versions over time.</p>
+      </div>
+    </div>
+    <div class="best-at" style="border-color:rgba(224,138,60,.3);
+         background:rgba(224,138,60,.06);">
+      <div class="bl" style="color:var(--accent)">Does best — and why it matters most</div>
+      <p>my-AI-stro is the proof of concept for both lineages of the
+      Deterministic Scaffold thesis — simultaneously, in a single working
+      system.</p>
+      <p style="margin-top:10px">
+      <strong>Lineage one: the pipeline-shape discipline.</strong> The Build
+      It Publisher's n8n workflow — named stages, atomic responsibilities,
+      explicit data flow — was internalized once and then re-encoded in every
+      project that followed. my-AI-stro is where that discipline runs at full
+      scale: three coexisting named pipelines (ingestion, advisor, classroom),
+      all sharing the same NDJSON event vocabulary
+      (<code>step_start</code> / <code>step_complete</code> /
+      <code>gate_pass</code> / <code>gate_fail</code> / <code>retry</code>
+      / <code>done</code>) that every tool in the suite now speaks.
+      </p>
+      <p style="margin-top:10px">
+      <strong>Lineage two: the verification discipline.</strong> MyMaestro
+      hallucinated. The lesson wasn't to write a better prompt — it was that
+      verification must be a system property, not a soft warning at the UI.
+      my-AI-stro was rebuilt from that failure: grounding gates at every
+      persistence boundary, a deterministic Python judge in the audit loop
+      (never an LLM), and a self-improving SOT that rotates toward
+      more-grounded versions over time without human intervention.
+      </p>
+      <p style="margin-top:10px">
+      <strong>The architectural blueprint for the suite.</strong> Every tool
+      that came after inherited its DNA from here. The blocking vs.
+      non-blocking gate distinction — first encoded in my-AI-stro's hard
+      validation gates — became my-AI-story's <code>cue_verify</code> doctrine
+      and my-AI-scene's <code>music_cue_verify</code>. The trust isolation
+      principle — the model that owns the SOT never handles ungrounded chat —
+      became the pattern for every verification boundary in the suite: Whisper
+      verifies Kokoro, CLIP scores SDXL, Python scores the LLM's spec. The
+      NDJSON vocabulary, the swappable backend protocol, the offline-provable
+      scaffold — all formalized here first, then carried forward.
+      my-AI-stro is not the most complex tool in the suite. It is the tool
+      the rest of the suite was built from.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== THE PIPELINE ===== -->
+<section id="pipeline">
+  <h2>The Pipelines</h2>
+  <h3>One shape. Every tool.</h3>
+  <p class="muted">
+    Every tool in the suite runs the same underlying pipeline pattern:
+    named stages with explicit data flow, a shared NDJSON event vocabulary,
+    and a gate at every boundary that decides whether to trust the model's
+    output. The domain changes. The shape does not.
+  </p>
+
+  <!-- Shared vocabulary -->
+  <div class="pipeline" style="margin-bottom:24px">
+    <h4 style="margin-bottom:14px;color:var(--accent2)">The shared event vocabulary</h4>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px">
+      Every stage in every pipeline emits the same events. Any tool's
+      output can be observed, logged, and streamed to a UI with the same
+      listener — because the vocabulary never changes across tools.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <code>step_start</code>
+      <code>step_complete</code>
+      <code>gate_pass</code>
+      <code>gate_fail</code>
+      <code>retry</code>
+      <code>fallback</code>
+      <code>skip</code>
+      <code>token</code>
+      <code>done</code>
+      <code>error</code>
+    </div>
+    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:rgba(94,194,126,.07);border:1px solid rgba(94,194,126,.2);
+                  border-radius:7px;padding:11px 14px">
+        <div style="font-size:10px;font-weight:700;color:var(--ok);
+                    text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">
+          Blocking gates</div>
+        <p style="font-size:12px;color:var(--muted);margin:0">
+          Hard pass/fail. A blocking failure stops the pipeline at that stage —
+          the model retries within a bounded limit, then falls back or halts.
+          These protect continuity, structure, and correctness.
+          The premise cannot proceed without them.
+        </p>
+      </div>
+      <div style="background:rgba(224,193,74,.07);border:1px solid rgba(224,193,74,.2);
+                  border-radius:7px;padding:11px 14px">
+        <div style="font-size:10px;font-weight:700;color:var(--warn);
+                    text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">
+          Non-blocking gates</div>
+        <p style="font-size:12px;color:var(--muted);margin:0">
+          Soft failures. A non-blocking failure drops the enhancement and
+          continues — a missing music bed, an unresolved sound cue, a
+          low-scoring visual that falls back to neutral.
+          Sound enhances. Continuity is the premise.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- my-AI-script pipeline -->
+  <div class="pipeline" style="margin-bottom:16px">
+    <h4 style="color:var(--accent2)">my-AI-script</h4>
+    <div class="pipe-stages">
+      <span class="ps">interview</span><span class="pa">→</span>
+      <span class="ps">llm_generate</span><span class="pa">→</span>
+      <span class="ps gate-b">spec_validate ●</span><span class="pa">→</span>
+      <span class="ps gate-b">spec_score ●</span><span class="pa">→</span>
+      <span class="ps gate-retry">retry ↺</span><span class="pa">→</span>
+      <span class="ps done">spec_ready</span>
+    </div>
+    <p class="pipe-note">
+      The LLM interviews until it can score well, then generates a spec for the
+      chosen target — a <code>ProductionSpec</code> (video) or a
+      <code>SongSpec</code> (music). Two blocking gates in sequence:
+      <code>parse</code> checks structural validity; a target-specific
+      <code>score</code> checks quality. Both must pass. Failure feeds back
+      as context for the next attempt.
+    </p>
+  </div>
+
+  <!-- my-AI-scene pipeline -->
+  <div class="pipeline" style="margin-bottom:16px">
+    <h4 style="color:var(--accent2)">my-AI-scene</h4>
+    <div class="pipe-stages">
+      <span class="ps">spec_load</span><span class="pa">→</span>
+      <span class="ps gate-b">narration_verify ●</span><span class="pa">→</span>
+      <span class="ps gate-b">duration_verify ●</span><span class="pa">→</span>
+      <span class="ps gate-b">footage_verify ●</span><span class="pa">→</span>
+      <span class="ps gate-nb">music_cue_verify ○</span><span class="pa">→</span>
+      <span class="ps">grade</span><span class="pa">→</span>
+      <span class="ps gate-b">assembly_verify ●</span><span class="pa">→</span>
+      <span class="ps done">episode.mp4</span>
+    </div>
+    <p class="pipe-note">
+      Per beat, per stage. <strong>Blocking ●</strong>: Whisper transcribes
+      Kokoro's narration and compares it to the script; CLIP scores SDXL's
+      still against the footage prompt; ffprobe verifies the final MP4.
+      <strong>Non-blocking ○</strong>: a music bed that fails its gate is
+      dropped — the episode continues without it. The worst case is a
+      slightly simpler video, never a corrupt one.
+    </p>
+  </div>
+
+  <!-- my-AI-beats pipeline -->
+  <div class="pipeline" style="margin-bottom:16px">
+    <h4 style="color:var(--accent2)">my-AI-beats</h4>
+    <div class="pipe-stages">
+      <span class="ps">spec_load</span><span class="pa">→</span>
+      <span class="ps gate-b">section_verify ●</span><span class="pa">→</span>
+      <span class="ps gate-b">duration_verify ●</span><span class="pa">↝</span>
+      <span class="ps">continuation</span><span class="pa">→</span>
+      <span class="ps gate-nb">vocal_verify ○</span><span class="pa">→</span>
+      <span class="ps gate-b">stitch_verify ●</span><span class="pa">→</span>
+      <span class="ps done">song.wav</span>
+    </div>
+    <p class="pipe-note">
+      Per section. <strong>The hidden gem ↝</strong>: each section is conditioned
+      on the tail of the previous one, so the song flows. <strong>Blocking ●</strong>:
+      CLAP scores the audio against the section prompt; duration must match the
+      bar count; ffprobe verifies the final master. <strong>Non-blocking ○</strong>:
+      a failed Bark vocal is dropped — the instrumental ships. Retry then a
+      tone-pad fallback keeps a bad section from corrupting the song.
+    </p>
+  </div>
+
+  <!-- my-AI-story pipeline -->
+  <div class="pipeline" style="margin-bottom:16px">
+    <h4 style="color:var(--accent2)">my-AI-story</h4>
+    <div class="pipe-stages">
+      <span class="ps">bible</span><span class="pa">→</span>
+      <span class="ps">episode_draft</span><span class="pa">→</span>
+      <span class="ps gate-b">continuity_verify ●</span><span class="pa">→</span>
+      <span class="ps gate-b">structure_verify ●</span><span class="pa">→</span>
+      <span class="ps gate-b">speaker_verify ●</span><span class="pa">→</span>
+      <span class="ps">tts_render</span><span class="pa">→</span>
+      <span class="ps gate-nb">cue_verify ○</span><span class="pa">→</span>
+      <span class="ps done">mixed WAV</span>
+    </div>
+    <p class="pipe-note">
+      Three blocking gates protect the story's integrity: continuity (characters
+      consistent with the series bible), structure (beats well-formed),
+      speaker (every line assigned to a character). One non-blocking gate:
+      <code>cue_verify</code> — unresolvable sound cues are dropped, never
+      fail the episode. Continuity is the premise; sound is enhancement.
+    </p>
+  </div>
+
+  <!-- my-AI-stro pipelines -->
+  <div class="pipeline">
+    <h4 style="color:var(--accent2)">my-AI-stro — three coexisting pipelines</h4>
+    <div style="margin-bottom:10px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px;
+                  text-transform:uppercase;letter-spacing:.07em">Ingestion</div>
+      <div class="pipe-stages">
+        <span class="ps">graph_entry</span><span class="pa">→</span>
+        <span class="ps">retrieval</span><span class="pa">→</span>
+        <span class="ps">summarization</span><span class="pa">→</span>
+        <span class="ps gate-b">validation ●</span><span class="pa">→</span>
+        <span class="ps done">memory_write</span>
+      </div>
+    </div>
+    <div style="margin-bottom:10px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px;
+                  text-transform:uppercase;letter-spacing:.07em">Advisor</div>
+      <div class="pipe-stages">
+        <span class="ps">retrieval</span><span class="pa">→</span>
+        <span class="ps">arc</span><span class="pa">→</span>
+        <span class="ps">section ×N</span><span class="pa">→</span>
+        <span class="ps">recap</span><span class="pa">→</span>
+        <span class="ps done">assembly</span>
+      </div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px;
+                  text-transform:uppercase;letter-spacing:.07em">Classroom</div>
+      <div class="pipe-stages">
+        <span class="ps">picker</span><span class="pa">→</span>
+        <span class="ps">plan_generation</span><span class="pa">→</span>
+        <span class="ps gate-b">plan_verify ●</span><span class="pa">→</span>
+        <span class="ps">beat_playback</span><span class="pa">→</span>
+        <span class="ps done">session_end</span>
+      </div>
+    </div>
+    <p class="pipe-note">
+      Three named pipelines running in the same application, all sharing the
+      same NDJSON event vocabulary. The ingestion pipeline's validation gate
+      uses the deterministic Python judge — not the summarizer, not mistral —
+      to decide whether a lesson's summary meets the grounding threshold before
+      it is written to the SOT. The audit loop runs continuously in the
+      background, independently re-scoring and rotating canonical entries
+      toward more-grounded versions over time.
+    </p>
+  </div>
+
+</section>
+
+<!-- ===== PRINCIPLES ===== -->
+<section id="principles">
+  <h2>Principles</h2>
+  <h3>What the methodology encodes</h3>
+
+  <div class="principles">
+    <div class="principle">
+      <div class="pt">The grader is never the generator</div>
+      <p>The model that produces content cannot evaluate its own output.
+      Whisper verifies Kokoro. CLIP scores SDXL. Mistral judges llama3:8b.
+      Python scores the spec the LLM just wrote. Trust separation at
+      every verification boundary.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">Doctrine before code</div>
+      <p>Every project starts with CONSTITUTION.md and ARCHITECTURE.md
+      before a single line of code. The constraints are written down first.
+      When the code needs to change, the doctrine changes first.
+      The constraint document is the source of truth.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">Blocking vs. non-blocking gates</div>
+      <p>Not all failures are equal. Continuity failures are blocking —
+      a story with inconsistent characters fails. Sound cue failures are
+      non-blocking — a missing ambient bed degrades gracefully. Every gate
+      is classified by whether its failure invalidates the artifact.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">Bounded retry, defined fallback</div>
+      <p>No unbounded loops. Every retry path has a maximum, and every
+      maximum has a defined fallback — a neutral clip, a silence, a hard
+      stop. Thrashing is a bug, not a strategy. The system fails
+      predictably or not at all.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">Offline-provable before online-expensive</div>
+      <p>Every pipeline is proven with deterministic fakes — ScriptedLLM,
+      ScriptedRenderer, scripted TTS — before any model weights download.
+      The scaffold is the system. The models are one implementation of it.
+      Tests run in seconds on zero dependencies.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">One observable pipeline</div>
+      <p>Every tool emits the same NDJSON event vocabulary:
+      <code>step_start</code> / <code>step_complete</code> /
+      <code>gate_pass</code> / <code>gate_fail</code> / <code>retry</code>
+      / <code>done</code>. Named stages, explicit data flow, observable
+      end-to-end — the Build It Publisher lineage in every project.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">Scoring as incentive, not decoration</div>
+      <p>In my-AI-stro's audit loop, the summarizer produces better entries
+      because the judge exists and it knows the criteria. In my-AI-script,
+      the LLM produces more detailed specs because the rubric is in its
+      system prompt. Knowing you will be scored changes what you produce.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">Local-first, free-first</div>
+      <p>All synthesis runs on local models — Ollama, Kokoro, SDXL-turbo,
+      MusicGen, faster-whisper, CLIP — on your own hardware. No paid APIs
+      in the render path. The methodology doesn't require a cloud budget.
+      It requires a scaffold.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
-  MoreSalamander · StudioLabs &nbsp;|&nbsp; <a href="https://github.com/MoreSalamander">GitHub ↗</a>
-  <br>Built by the engineer learning how to build it.
+  <span>MoreSalamander StudioLabs Productions · Scientia Ludusque</span>
+  <span>Two imprints. One thesis. A growing body of work.</span>
 </footer>
 
-</div>
 </body>
 </html>

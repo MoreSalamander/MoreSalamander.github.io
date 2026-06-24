@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MoreSalamander — All Projects</title>
+<meta name="description" content="A studio built on one idea: the model proposes, a deterministic scaffold disposes. Reliable AI across knowledge, story, video, music, code, games, and play — every project an instance of the same thesis." />
+<style>
+  :root {
+    --bg:#0a0c11; --panel:#12151c; --line:#212733; --ink:#e9edf3; --dim:#8b97a8;
+    --accent:#22d3ee;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px 120px;}
+
+  header{padding:96px 0 30px;text-align:center;background:radial-gradient(120% 70% at 50% -20%,rgba(34,211,238,.10),transparent 60%);}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+  h1{font-size:54px;line-height:1.04;margin:0 0 20px;letter-spacing:-1.5px;font-weight:800;}
+  .lede{font-size:19px;color:var(--dim);max-width:660px;margin:0 auto;} .lede strong{color:var(--ink);font-weight:600;}
+  .thesis{max-width:680px;margin:26px auto 0;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:18px 22px;font-size:15.5px;color:var(--dim);}
+  .thesis b{color:var(--ink);} .thesis .em{color:var(--accent);}
+
+  h2{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin:62px 0 4px;}
+  .h2sub{font-size:15px;color:var(--dim);margin:0 0 18px;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+  .card{position:relative;display:block;border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;background:var(--panel);overflow:hidden;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;}
+  .card::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--c,#22d3ee);opacity:.85;}
+  .card:hover{transform:translateY(-3px);border-color:var(--c,#22d3ee);box-shadow:0 10px 30px -12px var(--c,#22d3ee);}
+  .cname{font-size:18px;font-weight:700;color:var(--c,#22d3ee);letter-spacing:-.3px;}
+  .ctag{margin:7px 0 12px;font-size:14px;color:var(--ink);line-height:1.5;}
+  .cmeta{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--dim);text-transform:uppercase;}
+  .cmeta .ext{color:var(--c,#22d3ee);}
+
+  footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);text-align:center;font-family:var(--mono);font-size:12px;color:var(--dim);}
+  footer a{color:var(--accent);}
+  @media(max-width:560px){h1{font-size:38px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a href="index.html" style="font-family:var(--mono);font-size:12px;color:var(--dim);text-decoration:none;display:inline-block;margin-bottom:16px">&larr; MoreSalamander</a>
+  <div class="kicker">MoreSalamander · StudioLabs</div>
+  <h1>Everything in the studio</h1>
+  <p class="lede">Every project, grouped by what it is — each an instance of the same idea: an AI model
+  is a powerful but unreliable <strong>proposer</strong>, wrapped in a deterministic scaffold that
+  <strong>decides</strong> what's allowed to be true.</p>
+  <div class="thesis"><b>The model proposes; the scaffold disposes.</b> Knowledge, story, video, music, code,
+  games, play — <span class="em">the model fills it in, deterministic gates decide what survives.</span></div>
+</header>
+
+<h2>The thesis, proven</h2>
+<div class="h2sub">Where the idea is the whole point.</div>
+<div class="grid">
+  <a class="card" style="--c:#22d3ee" href="https://moresalamander.github.io/veritas/">
+    <div class="cname">Veritas Dynamics</div>
+    <div class="ctag">An LLM proposes; a deterministic scaffold decides. Reliable autonomous organizations, built as a trust system.</div>
+    <div class="cmeta">autonomous orgs · verification</div></a>
+  <a class="card" style="--c:#d9b25f" href="https://moresalamander.github.io/the-house-always-wins/">
+    <div class="cname">The House Always Wins</div>
+    <div class="ctag">A cinematic AI heist you watch, not play — six AI crew rob a casino while a seed-locked brain keeps the house's edge.</div>
+    <div class="cmeta">simulation · game AI</div></a>
+</div>
+
+<h2>The my-AI suite</h2>
+<div class="h2sub">Local-first, verification-driven generators — one thesis, six media.</div>
+<div class="grid">
+  <a class="card" style="--c:#22d3ee" href="https://moresalamander.github.io/myAIstro/">
+    <div class="cname">my-AI-stro</div>
+    <div class="ctag">Turns school lessons into a queryable Source of Truth — the maestro that conducts your knowledge.</div>
+    <div class="cmeta">knowledge</div></a>
+  <a class="card" style="--c:#a78bfa" href="https://moresalamander.github.io/myAIstory/">
+    <div class="cname">my-AI-story</div>
+    <div class="ctag">A multi-episode story generator with multi-voice narration. Many episodes, one story — continuity is the thread.</div>
+    <div class="cmeta">serialized fiction · TTS</div></a>
+  <a class="card" style="--c:#fbbf24" href="https://moresalamander.github.io/myAIscene/">
+    <div class="cname">my-AI-scene</div>
+    <div class="ctag">A production guide becomes a graded, scored, assembled MP4. Local models synthesize; Python verifiers cut.</div>
+    <div class="cmeta">video</div></a>
+  <a class="card" style="--c:#34d399" href="https://moresalamander.github.io/myAIscript/">
+    <div class="cname">my-AI-script</div>
+    <div class="ctag">The writer of the trio. Brief in, validated spec out — a ProductionSpec or SongSpec the engines can render.</div>
+    <div class="cmeta">authoring</div></a>
+  <a class="card" style="--c:#ec4899" href="https://moresalamander.github.io/myAIbeats/">
+    <div class="cname">my-AI-beats</div>
+    <div class="ctag">A local music generator. A spec in, a song out — sectioned, continued, CLAP-gated, stitched. The gate has ears.</div>
+    <div class="cmeta">music</div></a>
+  <a class="card" style="--c:#38bdf8" href="https://moresalamander.github.io/myAIchat/">
+    <div class="cname">my-AI-chat</div>
+    <div class="ctag">A fully-customizable UI for your local Ollama models. No build step, no cloud — your models, your interface.</div>
+    <div class="cmeta">tooling · local LLM</div></a>
+</div>
+
+<h2>Products</h2>
+<div class="h2sub">Apps with a real engine behind the screen.</div>
+<div class="grid">
+  <a class="card" style="--c:#10b981" href="https://moresalamander.github.io/SprinklerPro3D/">
+    <div class="cname">SprinklerPro 3D</div>
+    <div class="ctag">Design a residential sprinkler system in 3D to real irrigation-engineering rules, with a quality gate that verifies coverage.</div>
+    <div class="cmeta">irrigation design</div></a>
+  <a class="card" style="--c:#2dd4bf" href="https://moresalamander.github.io/Living-Painting-Studio/">
+    <div class="cname">Living Painting Studio</div>
+    <div class="ctag">Describe a scene; AI paints it; then it comes alive — drifting weather, wandering creatures, shifting light. Not a video, a living canvas.</div>
+    <div class="cmeta">generative art</div></a>
+  <a class="card" style="--c:#f97316" href="https://build-it-mauve.vercel.app">
+    <div class="cname">build-it</div>
+    <div class="ctag">A calm, Lego-manual reader for learning to code by hand-typing real programs, one verified step at a time.</div>
+    <div class="cmeta">learn to code · <span class="ext">live ↗</span></div></a>
+</div>
+
+<h2>Tools</h2>
+<div class="h2sub">Build the thing that builds the thing.</div>
+<div class="grid">
+  <a class="card" style="--c:#8b5cf6" href="https://moresalamander.github.io/vibe-engine/">
+    <div class="cname">Vibe Engine</div>
+    <div class="ctag">Describe a game; it interviews you, writes a design doc, and scaffolds a playable Unreal Engine 5 project from it.</div>
+    <div class="cmeta">game scaffolding · UE5</div></a>
+</div>
+
+<footer>
+  MoreSalamander · StudioLabs &nbsp;|&nbsp; <a href="https://github.com/MoreSalamander">GitHub ↗</a>
+  <br>Built by the engineer learning how to build it.
+</footer>
+
+</div>
+</body>
+</html>
