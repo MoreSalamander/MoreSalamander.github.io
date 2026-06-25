@@ -179,6 +179,15 @@
   .principle .pt { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
   .principle p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.5; }
 
+  /* ---- CTA ---- */
+  .cta {
+    display: inline-block; font-family: var(--mono); font-size: 13px;
+    color: var(--neon); border: 1px solid rgba(57,255,20,.4);
+    background: rgba(57,255,20,.06); border-radius: 8px; padding: 12px 20px;
+    text-decoration: none; transition: .15s;
+  }
+  .cta:hover { background: rgba(57,255,20,.12); box-shadow: 0 0 18px rgba(57,255,20,.18); }
+
   /* ---- FOOTER ---- */
   footer {
     border-top: 1px solid var(--line); padding: 32px 40px;
@@ -208,8 +217,8 @@
 <nav>
   <a class="brand" href="#"><span>More</span>Salamander</a>
   <a href="#thesis">The Thesis</a>
-  <a href="#tools">The Tools</a>
-  <a href="#pipeline">The Pipeline</a>
+  <a href="#earned">How It Was Earned</a>
+  <a href="#imprints">The Imprints</a>
   <a href="#principles">Principles</a>
   <a href="projects.html" style="color:var(--neon)">All Projects ↗</a>
   <span class="motto">Scientia Ludusque</span>
@@ -218,14 +227,36 @@
 <!-- ===== HERO ===== -->
 <div class="hero">
   <div class="eyebrow"><span style="color:var(--neon);text-shadow:0 0 10px rgba(57,255,20,.35)">MoreSalamander</span> StudioLabs Productions</div>
-  <div class="presents">presents: <em>The my-AI suite.</em></div>
-  <h1>The Thesis Methodology of the<br><em>Deterministic Scaffold.</em></h1>
+  <div class="presents"><em>Scientia Ludusque</em> — Knowledge and Play.</div>
+  <h1>A body of work under one idea:<br><em>the Deterministic Scaffold.</em></h1>
   <p class="lead">
-    One methodology. Five tools. Each one a different expression of the same
-    instinct — human-owned constraints, AI-powered synthesis, and verification
-    at every boundary. The model proposes. Python disposes.
+    A small studio building software, games, and creative work under one
+    methodological commitment: AI does the high-volume synthesis under
+    human-owned constraints, with verification at every boundary.
+    The model proposes. Python disposes.
   </p>
 </div>
+
+<!-- ===== WHAT THIS IS ===== -->
+<section id="about">
+  <h2>What this is</h2>
+  <h3>One studio. One thesis. A growing body of work.</h3>
+  <p>
+    MoreSalamander is a personal studio organizing a body of work — software,
+    tools, games, videos, simulations — under a shared methodological frame,
+    instead of shipping each project as a standalone artifact with no
+    connecting thread.
+  </p>
+  <div class="rule">
+    This studio is being built while its founder learns to be the engineer who
+    could build it. Every project is both an artifact and a training exercise.
+  </div>
+  <p class="muted">
+    That's the honest version, and it's the reason the work hangs together: the
+    body of work to date is the public record of that learning, in approximate
+    chronological order.
+  </p>
+</section>
 
 <!-- ===== THE THESIS ===== -->
 <section id="thesis">
@@ -239,12 +270,9 @@
     when to score, when to commit.
   </p>
   <p>
-    This isn't a preference picked up from a book. It was earned through two
-    specific lineages: the pipeline-shape discipline (from the Build It
-    Publisher — named stages, explicit data flow, atomic responsibility),
-    and the verification discipline (from MyMaestro's failure — a study tool
-    that hallucinated, proving that verification must be a system property,
-    not a soft warning at the UI).
+    In production-LLM circles the pattern goes by names like <em>compound AI
+    systems</em>, <em>guardrails</em>, or <em>constrained generation</em>. Here
+    it was earned through specific failures and codified into explicit doctrine.
   </p>
 
   <div class="rule">
@@ -263,7 +291,7 @@
       <div class="num">02</div>
       <div class="label">Synthesize</div>
       <p>Let the model do the high-volume work — drafting prose, generating
-      images, writing scripts, composing narration. The model is one component
+      images, writing code, composing narration. The model is one component
       in the system, not the whole system.</p>
     </div>
     <div class="move verify">
@@ -277,318 +305,88 @@
   </div>
 </section>
 
-<!-- ===== THE TOOLS ===== -->
-<section id="tools">
-  <h2>The Tools</h2>
-
-  <!-- my-AI-script -->
-  <div class="tool-card">
-    <div class="tool-header">
-      <div class="tool-header-row">
-        <div class="tool-name">my-<b>AI</b>-script</div>
-        <span class="tool-tag tag-studiolab">StudioLabs</span>
-      </div>
-      <div class="tool-pronounce">pronounced: <em>my-script</em></div>
-      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIscript" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIscript</a></div>
-    </div>
-    <p class="tool-desc">
-      The universal writer for the whole suite. An LLM conducts a creative
-      interview — asking, proposing, reflecting back — until it has enough to
-      write a complete, detailed spec. One engine, two targets: a
-      <code>ProductionSpec</code> for my-AI-scene, or a <code>SongSpec</code>
-      for my-AI-beats. The LLM decides when the interview ends. Python scores
-      the result.
-    </p>
-    <div class="moves-mini">
-      <div class="move-mini e">
-        <div class="ml">Explain</div>
-        <p>The interview is the constraint-gathering phase. The chosen target's
-        schema defines every field that must be filled — the LLM's questions
-        serve the schema. The scoring rubric is in the system prompt before the
-        LLM writes a word, so it knows the bar it's aiming for.</p>
-      </div>
-      <div class="move-mini s">
-        <div class="ml">Synthesize</div>
-        <p>Once the LLM is confident it can score well, it generates the full
-        spec from the conversation — every beat and narration line for video,
-        or every section, prompt and energy value for a song. Reference-quality
-        detail, on demand.</p>
-      </div>
-      <div class="move-mini v">
-        <div class="ml">Verify</div>
-        <p>A target-specific pure-Python judge scores out of 100 — video on
-        narration/footage/grade, music on prompt specificity and the
-        <em>energy arc</em>. Below 75, the breakdown feeds back and the LLM
-        revises. The scorer is never an LLM.</p>
-      </div>
-    </div>
-    <div class="best-at">
-      <div class="bl">Does best</div>
-      <p>Collaborative spec authoring where quality is enforced, not hoped for.
-      The scoring incentive — knowing Python will judge the output before it
-      generates — shapes what the LLM produces. It won't settle for vague
-      prompts or a flat energy arc because it knows they score low. Proven
-      live: a synthwave conversation produced a SongSpec that scored 98/100.</p>
-    </div>
-  </div>
-
-  <!-- my-AI-scene -->
-  <div class="tool-card">
-    <div class="tool-header">
-      <div class="tool-header-row">
-        <div class="tool-name">my-<b>AI</b>-scene</div>
-        <span class="tool-tag tag-productions">Productions</span>
-      </div>
-      <div class="tool-pronounce">pronounced: <em>my-scene</em></div>
-      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIscene" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIscene</a></div>
-    </div>
-    <p class="tool-desc">
-      A local-first video production engine. It takes a
-      <code>ProductionSpec</code> — the machine-readable form of a
-      production guide — and renders it into a graded, scored, assembled
-      MP4. Narration via Kokoro TTS, visuals via SDXL-turbo, music via
-      MusicGen, final assembly via ffmpeg. Entirely local, entirely free.
-    </p>
-    <div class="moves-mini">
-      <div class="move-mini e">
-        <div class="ml">Explain</div>
-        <p>The <code>ProductionSpec</code> is the constraint document.
-        Every beat declares its narration, footage prompt, music keywords,
-        and color grade before any model runs. The spec is the law.</p>
-      </div>
-      <div class="move-mini s">
-        <div class="ml">Synthesize</div>
-        <p>Kokoro speaks. SDXL-turbo generates stills. MusicGen composes
-        beds. ffmpeg Ken Burns the stills into motion. Each model fills
-        one stage of the pipeline and no other.</p>
-      </div>
-      <div class="move-mini v">
-        <div class="ml">Verify</div>
-        <p>Trust separation baked in: Whisper transcribes Kokoro's output
-        for <code>narration_verify</code>. CLIP scores SDXL's output for
-        <code>footage_verify</code>. ffprobe measures the final MP4 for
-        <code>assembly_verify</code>. The generator never self-grades.</p>
-      </div>
-    </div>
-    <div class="best-at">
-      <div class="bl">Does best</div>
-      <p>Deterministic video production from a defined spec. Because every
-      stage is verified independently of the model that produced it, the
-      pipeline degrades gracefully — footage fallbacks replace failed stills,
-      music drops without failing the episode, narration retries on
-      transcript mismatch. The worst case is a slightly simpler video, never
-      a corrupt one.</p>
-    </div>
-  </div>
-
-  <!-- my-AI-beats -->
-  <div class="tool-card">
-    <div class="tool-header">
-      <div class="tool-header-row">
-        <div class="tool-name">my-<b>AI</b>-beats</div>
-        <span class="tool-tag tag-productions">Productions</span>
-      </div>
-      <div class="tool-pronounce">pronounced: <em>my-beats</em></div>
-      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIbeats" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIbeats</a></div>
-    </div>
-    <p class="tool-desc">
-      A local-first music generator. It takes a <code>SongSpec</code> — section
-      structure, key, tempo, and an energy value per section — and renders a
-      complete, mastered song. MusicGen synthesizes each section, CLAP scores
-      it, ffmpeg crossfades and loudness-normalizes the master. Entirely local,
-      entirely free.
-    </p>
-    <div class="moves-mini">
-      <div class="move-mini e">
-        <div class="ml">Explain</div>
-        <p>The <code>SongSpec</code> is the constraint document. Every section
-        declares its prompt, bar count, and <em>energy</em> (0–1) before any
-        model runs. The energy arc — quiet intro, towering chorus, soft outro —
-        is the song's emotional shape, authored up front.</p>
-      </div>
-      <div class="move-mini s">
-        <div class="ml">Synthesize</div>
-        <p>MusicGen renders each section. <strong>The hidden gem:</strong> every
-        section after the first is conditioned on the last few seconds of the
-        previous one — audio continuation. Sections don't stitch, they
-        <em>flow</em>. Bark adds optional sung vocals on the side.</p>
-      </div>
-      <div class="move-mini v">
-        <div class="ml">Verify</div>
-        <p>CLAP scores each section against its prompt (<code>section_verify</code>);
-        duration and final-stitch gates are blocking. Vocals are
-        <em>non-blocking</em> — a failed vocal is dropped, the instrumental
-        ships. CLAP is the judge; MusicGen never grades itself.</p>
-      </div>
-    </div>
-    <div class="best-at">
-      <div class="bl">Does best</div>
-      <p>Complete instrumental songs with a real emotional arc, built section by
-      section and flowing as one piece thanks to audio continuation. The same
-      blocking/non-blocking doctrine as my-AI-stories applies: the instrumental
-      is the premise, vocals are enhancement. Proven live: an 8-section indie
-      folk track, 3:48, mastered to −14 LUFS.</p>
-    </div>
-  </div>
-
-  <!-- my-AI-story -->
-  <div class="tool-card">
-    <div class="tool-header">
-      <div class="tool-header-row">
-        <div class="tool-name">my-<b>AI</b>-stories</div>
-        <span class="tool-tag tag-studiolab">StudioLabs</span>
-      </div>
-      <div class="tool-pronounce">pronounced: <em>my-stories</em></div>
-      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIstory" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIstory</a></div>
-    </div>
-    <p class="tool-desc">
-      A long-form, multi-episode serial fiction engine with multi-voice local
-      TTS. You provide the series bible — characters, theme, plot direction.
-      The system generates full audio episodes, verified beat by beat, with
-      distinct voices per character and a sound design layer that enhances
-      without ever failing the episode.
-    </p>
-    <div class="moves-mini">
-      <div class="move-mini e">
-        <div class="ml">Explain</div>
-        <p>The series bible is the constraint document. Characters, world
-        rules, plot arcs — written before any synthesis. The LLM fills
-        episodes inside the bible. It never edits the bible.</p>
-      </div>
-      <div class="move-mini s">
-        <div class="ml">Synthesize</div>
-        <p>Ollama generates episode drafts scene by scene. Piper TTS
-        renders each line in the character's assigned voice. Sound cues
-        placed at narrative anchors by a non-blocking mixer.</p>
-      </div>
-      <div class="move-mini v">
-        <div class="ml">Verify</div>
-        <p>Three blocking gates: continuity (characters consistent with
-        bible), structure (beats well-formed), speaker (every line assigned).
-        One non-blocking gate: <code>cue_verify</code> — unresolvable
-        sound cues are dropped, never fail the episode.</p>
-      </div>
-    </div>
-    <div class="best-at">
-      <div class="bl">Does best</div>
-      <p>Episodic narrative audio that stays internally consistent across
-      episodes. The continuity gate means characters don't contradict
-      themselves. The non-blocking sound doctrine means "continuity is the
-      premise, sound is enhancement" — a principle that keeps quality high
-      without making the pipeline fragile.</p>
-    </div>
-  </div>
-
-  <!-- my-AI-stro — the crowning jewel -->
-  <div class="tool-card" style="border-color: rgba(224,138,60,.4);
-       background: linear-gradient(135deg, #171922 0%, #1d1a14 100%);">
-    <div class="tool-header">
-      <div class="tool-header-row">
-        <div class="tool-name">my-<b>AI</b>-stro</div>
-        <span class="tool-tag tag-studiolab">StudioLabs</span>
-        <span class="tool-tag" style="background:rgba(224,138,60,.18);
-              color:var(--accent);margin-left:4px;">The Crowning Jewel</span>
-      </div>
-      <div class="tool-pronounce">pronounced: <em>my-stro</em> &nbsp;·&nbsp; like Maestro — but inside Python, the AI is silent (in hallucination)</div>
-      <div class="tool-repo"><a href="https://github.com/MoreSalamander/myAIstro" target="_blank" rel="noopener">↗ github.com/MoreSalamander/myAIstro</a></div>
-    </div>
-    <p class="tool-desc">
-      A local-first, self-improving personal knowledge system. Paste a lesson
-      from anywhere — a course, an article, a video transcript — and the
-      system summarizes it, validates it, and stores it in a Source of Truth.
-      Downstream agents (quizzer, advisor, classroom, general chat) reason
-      over the SOT instead of re-summarizing on every query. Four local
-      Ollama models, each assigned a specific role — the model that owns the
-      SOT never handles ungrounded chat. The system gets better the more it
-      is used.
-    </p>
-    <div class="moves-mini">
-      <div class="move-mini e">
-        <div class="ml">Explain</div>
-        <p>Four Ollama models with deliberate role separation:
-        <code>llama3:8b</code> summarizes (owns the SOT),
-        <code>llama3.1:8b</code> advises (128K context, study guides),
-        <code>llama3.2</code> quizzes, chats, and teaches,
-        <code>mistral</code> judges — never a model that generated
-        the content it is scoring.</p>
-      </div>
-      <div class="move-mini s">
-        <div class="ml">Synthesize</div>
-        <p>LLM extracts structured summaries, code snippets, key concepts.
-        Chunked for long lessons. Advisor generates full course-wide study
-        plans from SOT context. Classroom builds interactive lesson sessions.</p>
-      </div>
-      <div class="move-mini v">
-        <div class="ml">Verify</div>
-        <p>Grounding gates at every persistence boundary — SOT write, Notebook
-        save, Classroom plan persist, raise-hand runtime answers. The audit
-        loop's Judge is a deterministic Python formula, not an LLM. It runs
-        continuously and rotates the SOT toward more-grounded versions over time.</p>
-      </div>
-    </div>
-    <div class="best-at" style="border-color:rgba(224,138,60,.3);
-         background:rgba(224,138,60,.06);">
-      <div class="bl" style="color:var(--accent)">Does best — and why it matters most</div>
-      <p>my-AI-stro is the proof of concept for both lineages of the
-      Deterministic Scaffold thesis — simultaneously, in a single working
-      system.</p>
-      <p style="margin-top:10px">
-      <strong>Lineage one: the pipeline-shape discipline.</strong> The Build
-      It Publisher's n8n workflow — named stages, atomic responsibilities,
-      explicit data flow — was internalized once and then re-encoded in every
-      project that followed. my-AI-stro is where that discipline runs at full
-      scale: three coexisting named pipelines (ingestion, advisor, classroom),
-      all sharing the same NDJSON event vocabulary
-      (<code>step_start</code> / <code>step_complete</code> /
-      <code>gate_pass</code> / <code>gate_fail</code> / <code>retry</code>
-      / <code>done</code>) that every tool in the suite now speaks.
-      </p>
-      <p style="margin-top:10px">
-      <strong>Lineage two: the verification discipline.</strong> MyMaestro
-      hallucinated. The lesson wasn't to write a better prompt — it was that
-      verification must be a system property, not a soft warning at the UI.
-      my-AI-stro was rebuilt from that failure: grounding gates at every
-      persistence boundary, a deterministic Python judge in the audit loop
-      (never an LLM), and a self-improving SOT that rotates toward
-      more-grounded versions over time without human intervention.
-      </p>
-      <p style="margin-top:10px">
-      <strong>The architectural blueprint for the suite.</strong> Every tool
-      that came after inherited its DNA from here. The blocking vs.
-      non-blocking gate distinction — first encoded in my-AI-stro's hard
-      validation gates — became my-AI-story's <code>cue_verify</code> doctrine
-      and my-AI-scene's <code>music_cue_verify</code>. The trust isolation
-      principle — the model that owns the SOT never handles ungrounded chat —
-      became the pattern for every verification boundary in the suite: Whisper
-      verifies Kokoro, CLIP scores SDXL, Python scores the LLM's spec. The
-      NDJSON vocabulary, the swappable backend protocol, the offline-provable
-      scaffold — all formalized here first, then carried forward.
-      my-AI-stro is not the most complex tool in the suite. It is the tool
-      the rest of the suite was built from.
-      </p>
-    </div>
-  </div>
-
-</section>
-
-<!-- ===== THE PIPELINE ===== -->
-<section id="pipeline">
-  <h2>The Pipelines</h2>
-  <h3>One shape. Every tool.</h3>
+<!-- ===== HOW IT WAS EARNED ===== -->
+<section id="earned">
+  <h2>How the methodology was earned</h2>
+  <h3>Two lineages, both earned on real projects.</h3>
   <p class="muted">
-    Every tool in the suite runs the same underlying pipeline pattern:
-    named stages with explicit data flow, a shared NDJSON event vocabulary,
-    and a gate at every boundary that decides whether to trust the model's
-    output. The domain changes. The shape does not.
+    The thesis isn't a design preference picked up from a book. It has two
+    origins, each traceable to a specific project — and the combination of the
+    two is what the Deterministic Scaffold encodes.
   </p>
 
-  <!-- Shared vocabulary -->
-  <div class="pipeline" style="margin-bottom:24px">
+  <div class="moves" style="grid-template-columns:1fr 1fr">
+    <div class="move explain">
+      <div class="num">I</div>
+      <div class="label">Lineage one — pipeline shape</div>
+      <p>Building the <em>Build It Publisher</em> (a six-stage n8n workflow,
+      Jan 2026) forced the discipline: named stages, one responsibility each,
+      explicit data flow. That shape got re-encoded in code, project after
+      project, and later re-emerged as NDJSON event streams. It tells you
+      <em>how a system is structured</em>.</p>
+    </div>
+    <div class="move verify">
+      <div class="num">II</div>
+      <div class="label">Lineage two — verification</div>
+      <p><em>MyMaestro</em>, the first study tool, hallucinated — plausible
+      wrong content into a learning aid, which is worse than nothing. The fix
+      was architectural: verification has to be a load-bearing layer, not a
+      soft warning at the UI. It tells you <em>what every stage must do before
+      it persists</em>.</p>
+    </div>
+  </div>
+
+  <div class="rule">
+    Pipeline shape + verification at every boundary = the Deterministic Scaffold.
+  </div>
+
+  <p class="muted">
+    The methodology didn't come from a paper. It came from building the Build It
+    Publisher and then watching MyMaestro hallucinate two months later. Both
+    lineages are visible in every project the studio has shipped since.
+  </p>
+</section>
+
+<!-- ===== THE CROWNING JEWEL ===== -->
+<section id="flagships">
+  <h2>The crowning jewel</h2>
+  <h3>my-AI-stro — and its sibling.</h3>
+  <p>
+    The body of work didn't accumulate randomly; it <em>converged</em>. Eight
+    months of preceding projects each contributed a lesson that became a piece
+    of <a href="https://moresalamander.github.io/myAIstro/" style="color:var(--accent2)">my-AI-stro</a>:
+    three coexisting named pipelines on one shared event vocabulary, a grounding
+    gate at every persistence boundary, a deterministic (not-LLM) judge in a
+    self-improving audit loop, and trust isolation across local models. It is
+    the entire thesis operating as a working system, end-to-end auditable by
+    anyone who reads the source — the reference implementation of the methodology.
+  </p>
+  <p>
+    Where my-AI-stro is the methodology realized as a full system,
+    <a href="https://moresalamander.github.io/the-house-always-wins/" style="color:var(--accent)">The House Always Wins</a>
+    is the same verification discipline realized as <em>real-time game AI</em> —
+    every decision auditable at every frame. The crowning jewel and the live
+    demonstration: two projects, one thesis, different shapes.
+  </p>
+</section>
+
+<!-- ===== THE SHAPE IN PRACTICE ===== -->
+<section id="practice">
+  <h2>The shape in practice</h2>
+  <h3>One pipeline pattern. One event vocabulary.</h3>
+  <p class="muted">
+    Every tool runs the same underlying pipeline: named stages with explicit
+    data flow, a shared NDJSON event vocabulary, and a gate at every boundary
+    that decides whether to trust the model's output. The domain changes; the
+    shape does not. <em>(Each project's own pipeline lives on its page.)</em>
+  </p>
+
+  <div class="pipeline">
     <h4 style="margin-bottom:14px;color:var(--accent2)">The shared event vocabulary</h4>
     <p style="font-size:13px;color:var(--muted);margin-bottom:14px">
-      Every stage in every pipeline emits the same events. Any tool's
-      output can be observed, logged, and streamed to a UI with the same
-      listener — because the vocabulary never changes across tools.
+      Every stage in every pipeline emits the same events, so any tool's output
+      can be observed, logged, and streamed to a UI with the same listener —
+      the vocabulary never changes across tools.
     </p>
     <div style="display:flex;flex-wrap:wrap;gap:8px">
       <code>step_start</code>
@@ -609,10 +407,9 @@
                     text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">
           Blocking gates</div>
         <p style="font-size:12px;color:var(--muted);margin:0">
-          Hard pass/fail. A blocking failure stops the pipeline at that stage —
-          the model retries within a bounded limit, then falls back or halts.
-          These protect continuity, structure, and correctness.
-          The premise cannot proceed without them.
+          Hard pass/fail. A blocking failure stops the pipeline — the model
+          retries within a bounded limit, then falls back or halts. These
+          protect correctness, structure, and continuity.
         </p>
       </div>
       <div style="background:rgba(224,193,74,.07);border:1px solid rgba(224,193,74,.2);
@@ -622,149 +419,48 @@
           Non-blocking gates</div>
         <p style="font-size:12px;color:var(--muted);margin:0">
           Soft failures. A non-blocking failure drops the enhancement and
-          continues — a missing music bed, an unresolved sound cue, a
-          low-scoring visual that falls back to neutral.
-          Sound enhances. Continuity is the premise.
+          continues — a missing music bed, a low-scoring visual that falls back
+          to neutral. The premise survives; the extra is optional.
         </p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- my-AI-script pipeline -->
-  <div class="pipeline" style="margin-bottom:16px">
-    <h4 style="color:var(--accent2)">my-AI-script</h4>
-    <div class="pipe-stages">
-      <span class="ps">interview</span><span class="pa">→</span>
-      <span class="ps">llm_generate</span><span class="pa">→</span>
-      <span class="ps gate-b">spec_validate ●</span><span class="pa">→</span>
-      <span class="ps gate-b">spec_score ●</span><span class="pa">→</span>
-      <span class="ps gate-retry">retry ↺</span><span class="pa">→</span>
-      <span class="ps done">spec_ready</span>
+<!-- ===== TWO IMPRINTS ===== -->
+<section id="imprints">
+  <h2>Two imprints</h2>
+  <h3>One thesis, split by medium.</h3>
+  <div class="principles">
+    <div class="principle">
+      <div class="pt" style="color:var(--accent2)">MoreSalamander StudioLabs</div>
+      <p>Engineering work — where the deliverable is a running system, a
+      codebase, a product. Shipped under explicit constraint documents
+      (Constitution, ARCHITECTURE.md, SPEC.md) that codify what the AI is and
+      isn't allowed to do during development. The methodology encoded in code.</p>
     </div>
-    <p class="pipe-note">
-      The LLM interviews until it can score well, then generates a spec for the
-      chosen target — a <code>ProductionSpec</code> (video) or a
-      <code>SongSpec</code> (music). Two blocking gates in sequence:
-      <code>parse</code> checks structural validity; a target-specific
-      <code>score</code> checks quality. Both must pass. Failure feeds back
-      as context for the next attempt.
-    </p>
+    <div class="principle">
+      <div class="pt" style="color:var(--accent)">MoreSalamander Productions</div>
+      <p>Creative work — videos, performances, comedy. The same
+      explicit-constraint pattern applied to creative output: detailed shot,
+      narration, and music specifications passed to AI generation tools. The
+      methodology shapes the process; the deliverable is a production.</p>
+    </div>
   </div>
+</section>
 
-  <!-- my-AI-scene pipeline -->
-  <div class="pipeline" style="margin-bottom:16px">
-    <h4 style="color:var(--accent2)">my-AI-scene</h4>
-    <div class="pipe-stages">
-      <span class="ps">spec_load</span><span class="pa">→</span>
-      <span class="ps gate-b">narration_verify ●</span><span class="pa">→</span>
-      <span class="ps gate-b">duration_verify ●</span><span class="pa">→</span>
-      <span class="ps gate-b">footage_verify ●</span><span class="pa">→</span>
-      <span class="ps gate-nb">music_cue_verify ○</span><span class="pa">→</span>
-      <span class="ps">grade</span><span class="pa">→</span>
-      <span class="ps gate-b">assembly_verify ●</span><span class="pa">→</span>
-      <span class="ps done">episode.mp4</span>
-    </div>
-    <p class="pipe-note">
-      Per beat, per stage. <strong>Blocking ●</strong>: Whisper transcribes
-      Kokoro's narration and compares it to the script; CLIP scores SDXL's
-      still against the footage prompt; ffprobe verifies the final MP4.
-      <strong>Non-blocking ○</strong>: a music bed that fails its gate is
-      dropped — the episode continues without it. The worst case is a
-      slightly simpler video, never a corrupt one.
-    </p>
-  </div>
-
-  <!-- my-AI-beats pipeline -->
-  <div class="pipeline" style="margin-bottom:16px">
-    <h4 style="color:var(--accent2)">my-AI-beats</h4>
-    <div class="pipe-stages">
-      <span class="ps">spec_load</span><span class="pa">→</span>
-      <span class="ps gate-b">section_verify ●</span><span class="pa">→</span>
-      <span class="ps gate-b">duration_verify ●</span><span class="pa">↝</span>
-      <span class="ps">continuation</span><span class="pa">→</span>
-      <span class="ps gate-nb">vocal_verify ○</span><span class="pa">→</span>
-      <span class="ps gate-b">stitch_verify ●</span><span class="pa">→</span>
-      <span class="ps done">song.wav</span>
-    </div>
-    <p class="pipe-note">
-      Per section. <strong>The hidden gem ↝</strong>: each section is conditioned
-      on the tail of the previous one, so the song flows. <strong>Blocking ●</strong>:
-      CLAP scores the audio against the section prompt; duration must match the
-      bar count; ffprobe verifies the final master. <strong>Non-blocking ○</strong>:
-      a failed Bark vocal is dropped — the instrumental ships. Retry then a
-      tone-pad fallback keeps a bad section from corrupting the song.
-    </p>
-  </div>
-
-  <!-- my-AI-story pipeline -->
-  <div class="pipeline" style="margin-bottom:16px">
-    <h4 style="color:var(--accent2)">my-AI-story</h4>
-    <div class="pipe-stages">
-      <span class="ps">bible</span><span class="pa">→</span>
-      <span class="ps">episode_draft</span><span class="pa">→</span>
-      <span class="ps gate-b">continuity_verify ●</span><span class="pa">→</span>
-      <span class="ps gate-b">structure_verify ●</span><span class="pa">→</span>
-      <span class="ps gate-b">speaker_verify ●</span><span class="pa">→</span>
-      <span class="ps">tts_render</span><span class="pa">→</span>
-      <span class="ps gate-nb">cue_verify ○</span><span class="pa">→</span>
-      <span class="ps done">mixed WAV</span>
-    </div>
-    <p class="pipe-note">
-      Three blocking gates protect the story's integrity: continuity (characters
-      consistent with the series bible), structure (beats well-formed),
-      speaker (every line assigned to a character). One non-blocking gate:
-      <code>cue_verify</code> — unresolvable sound cues are dropped, never
-      fail the episode. Continuity is the premise; sound is enhancement.
-    </p>
-  </div>
-
-  <!-- my-AI-stro pipelines -->
-  <div class="pipeline">
-    <h4 style="color:var(--accent2)">my-AI-stro — three coexisting pipelines</h4>
-    <div style="margin-bottom:10px">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:6px;
-                  text-transform:uppercase;letter-spacing:.07em">Ingestion</div>
-      <div class="pipe-stages">
-        <span class="ps">graph_entry</span><span class="pa">→</span>
-        <span class="ps">retrieval</span><span class="pa">→</span>
-        <span class="ps">summarization</span><span class="pa">→</span>
-        <span class="ps gate-b">validation ●</span><span class="pa">→</span>
-        <span class="ps done">memory_write</span>
-      </div>
-    </div>
-    <div style="margin-bottom:10px">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:6px;
-                  text-transform:uppercase;letter-spacing:.07em">Advisor</div>
-      <div class="pipe-stages">
-        <span class="ps">retrieval</span><span class="pa">→</span>
-        <span class="ps">arc</span><span class="pa">→</span>
-        <span class="ps">section ×N</span><span class="pa">→</span>
-        <span class="ps">recap</span><span class="pa">→</span>
-        <span class="ps done">assembly</span>
-      </div>
-    </div>
-    <div style="margin-bottom:14px">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:6px;
-                  text-transform:uppercase;letter-spacing:.07em">Classroom</div>
-      <div class="pipe-stages">
-        <span class="ps">picker</span><span class="pa">→</span>
-        <span class="ps">plan_generation</span><span class="pa">→</span>
-        <span class="ps gate-b">plan_verify ●</span><span class="pa">→</span>
-        <span class="ps">beat_playback</span><span class="pa">→</span>
-        <span class="ps done">session_end</span>
-      </div>
-    </div>
-    <p class="pipe-note">
-      Three named pipelines running in the same application, all sharing the
-      same NDJSON event vocabulary. The ingestion pipeline's validation gate
-      uses the deterministic Python judge — not the summarizer, not mistral —
-      to decide whether a lesson's summary meets the grounding threshold before
-      it is written to the SOT. The audit loop runs continuously in the
-      background, independently re-scoring and rotating canonical entries
-      toward more-grounded versions over time.
-    </p>
-  </div>
-
+<!-- ===== THE BODY OF WORK ===== -->
+<section id="work">
+  <h2>The body of work</h2>
+  <h3>Every project, the same instinct.</h3>
+  <p>
+    From the studio's first publicly shipped agent to the flagship knowledge
+    system, each project is the same thesis applied to a different problem —
+    knowledge, story, video, music, code, games, irrigation, generative art.
+    Each has its own page, with the Explain → Synthesize → Verify breakdown
+    for that project. The full catalog, grouped and cross-linked:
+  </p>
+  <p><a href="projects.html" class="cta">→ See all projects</a></p>
 </section>
 
 <!-- ===== PRINCIPLES ===== -->
@@ -833,10 +529,52 @@
   </div>
 </section>
 
+<!-- ===== WHERE THIS IS GOING ===== -->
+<section id="going">
+  <h2>Where this is going</h2>
+  <h3>Auditable AI, as a trajectory.</h3>
+  <div class="principles">
+    <div class="principle">
+      <div class="pt" style="color:var(--accent)">Near-term</div>
+      <p>Depth on the flagships (my-AI-stro, The House Always Wins); the
+      Journal of Informal Human Protocols pilot; this public home collecting
+      the work; a coherent visual identity; cross-linked projects.</p>
+    </div>
+    <div class="principle">
+      <div class="pt" style="color:var(--accent2)">Medium-term</div>
+      <p>Simulation engineering as the specialty — ecosystem, irrigation,
+      combat AI, particle life, the curation loop are all simulations in some
+      sense. Auditable AI as the consistent thesis across every new domain.</p>
+    </div>
+    <div class="principle" style="grid-column:1/-1">
+      <div class="pt" style="color:var(--ok)">Long-term</div>
+      <p>A body of work substantial enough that the <em>trajectory itself
+      becomes the credential</em> — not "look at this single project," but
+      "look at the arc of shipping under one methodology."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ON AI COLLABORATION ===== -->
+<section id="collaboration">
+  <h2>On AI collaboration</h2>
+  <h3>Disclosed, not hidden.</h3>
+  <p class="muted">
+    Every MoreSalamander project is co-authored with AI — disclosed on each
+    project, in the commit history, and as a matter of brand identity. The human
+    role is constant across all of them: design the constraints, define
+    acceptance criteria, judge outputs, decide what ships. The AI role is
+    high-volume synthesis inside those constraints. Neither party does the
+    other's job; both are visible in the result. The discipline traces back to
+    early line-for-line sessions in a chat window, and carried forward as the
+    tooling got better.
+  </p>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer>
-  <span>MoreSalamander StudioLabs Productions · Scientia Ludusque</span>
-  <span>Two imprints. One thesis. A growing body of work.</span>
+  <span>MoreSalamander StudioLabs Productions · <em>Scientia Ludusque</em></span>
+  <span><a href="projects.html">All Projects →</a></span>
 </footer>
 
 </body>
