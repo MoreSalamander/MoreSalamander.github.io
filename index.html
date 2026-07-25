@@ -467,7 +467,7 @@
 
   <div class="pipeline">
     <h4 style="margin-bottom:14px;color:var(--accent2)">One layer runs underneath all of it: DataHub</h4>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:0">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px">
       Every agent in the Crypto Hunter / hunter-engine / Opportunity lineage
       writes candidate specs, evidence, and verdicts through one deterministic
       store — no agent ever writes to disk directly. That single-writer
@@ -477,13 +477,20 @@
       read-only <em>because</em> each engine already centralizes its state
       behind one DataHub-shaped store — <code>hunter-engine</code>'s literal
       <code>DataHub</code>, and Opportunity's own <code>OpportunityHub</code>,
-      the same discipline one level up. The name wasn't arbitrary — it was the
-      natural fit for a family of engines that only work because every
-      agent's output funnels through one auditable place before anything
-      downstream can trust it. (Veritas's own equivalent predates this naming
-      and is called <code>MemoryStore</code> — same role, different lineage,
-      same invariant.)
+      the same discipline one level up. (Veritas's own equivalent predates
+      this naming and is called <code>MemoryStore</code> — same role,
+      different lineage, same invariant.)
     </p>
+    <div class="best-at">
+      <div class="bl">Not a retrofit — the direction</div>
+      <p>The name wasn't arbitrary, and it isn't backward-looking either.
+      DataHub is the natural information medium for a deterministic agent
+      engine to communicate through — one auditable channel every agent
+      reads and writes, instead of ad hoc calls between them. That's the
+      pivotal, forward direction for how this family of engines exchanges
+      information going forward, not just how the last three happened to
+      be built.</p>
+    </div>
   </div>
 
   <div class="rule">
