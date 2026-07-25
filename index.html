@@ -465,6 +465,27 @@
     </div>
   </div>
 
+  <div class="pipeline">
+    <h4 style="margin-bottom:14px;color:var(--accent2)">One layer runs underneath all of it: DataHub</h4>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:0">
+      Every agent in the Crypto Hunter / hunter-engine / Opportunity lineage
+      writes candidate specs, evidence, and verdicts through one deterministic
+      store — no agent ever writes to disk directly. That single-writer
+      discipline is what makes the rest of the recursion possible:
+      <code>settle_debate</code> can re-run the gate because evidence lives in
+      one place; Opportunity's bridge can read three engines' verified queues
+      read-only <em>because</em> each engine already centralizes its state
+      behind one DataHub-shaped store — <code>hunter-engine</code>'s literal
+      <code>DataHub</code>, and Opportunity's own <code>OpportunityHub</code>,
+      the same discipline one level up. The name wasn't arbitrary — it was the
+      natural fit for a family of engines that only work because every
+      agent's output funnels through one auditable place before anything
+      downstream can trust it. (Veritas's own equivalent predates this naming
+      and is called <code>MemoryStore</code> — same role, different lineage,
+      same invariant.)
+    </p>
+  </div>
+
   <div class="rule">
     The three names are one compounding idea, not three products. Veritas is
     the ground every level stands on — true at every height, not a rung
