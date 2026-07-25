@@ -218,6 +218,7 @@
   <a class="brand" href="#"><span>More</span>Salamander</a>
   <a href="#thesis">The Thesis</a>
   <a href="#earned">How It Was Earned</a>
+  <a href="#next-arc">The Next Arc</a>
   <a href="#imprints">The Imprints</a>
   <a href="#principles">Principles</a>
   <a href="projects.html" style="color:var(--neon)">All Projects ↗</a>
@@ -370,6 +371,110 @@
   </p>
 </section>
 
+<!-- ===== THE NEXT ARC ===== -->
+<section id="next-arc">
+  <h2>The Next Arc</h2>
+  <h3>The scaffold becomes an engine.</h3>
+  <p>
+    my-AI-stro proved the thesis as one system: a single deterministic scaffold
+    wrapped around one body of work. The arc that follows it asks a different
+    question — what happens when the scaffold itself gets pulled out of any
+    one project and made into something <em>other</em> projects plug into.
+    Three more names mark that generalization, each a checkpoint, not a new idea.
+  </p>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name"><b>Veritas</b> Dynamics</div>
+        <span class="tool-tag tag-studiolab">the substrate</span>
+      </div>
+      <div class="tool-repo"><a href="https://moresalamander.github.io/veritas/">moresalamander.github.io/veritas ↗</a></div>
+    </div>
+    <p class="tool-desc">
+      Started 2026-06-09. The moment "verify at every boundary" stopped being
+      a discipline re-implemented per project and became a literal reusable
+      substrate — <code>Artifact</code> / <code>Gate</code> / <code>Memory</code>
+      / <code>Run</code> / <code>Executor</code> primitives, under one hard
+      invariant: zero gates can ever accept on judgment alone. Proven by building
+      three genuinely different verification models — software (execute the code),
+      web (render in a real browser), research (ground every claim in a pinned
+      source) — on the exact same unchanged engine. Later phases added a
+      human-approval tier for the one thing that can't be gated deterministically
+      (taste), and closed the loop with a literal bootstrap: the org used its own
+      gates to accept a real piece of its own engine, built by itself.
+    </p>
+    <div class="best-at">
+      <div class="bl">Not a project that uses the thesis</div>
+      <p>It's the thesis made into infrastructure — the capstone of this arc the
+      way my-AI-stro is the crowning jewel of the last one.</p>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name"><b>Crypto</b> Hunter AI</div>
+        <span class="tool-tag tag-studiolab">the proof</span>
+      </div>
+      <div class="tool-repo"><a href="https://moresalamander.github.io/crypto-hunter/">moresalamander.github.io/crypto-hunter ↗</a></div>
+    </div>
+    <p class="tool-desc">
+      Shipped 2026-07-18. The same invariant, reimplemented independently,
+      under real stakes: real money, and real scams actively trying to get
+      past the gate. It doesn't run on Veritas's engine code — it was
+      hand-built in parallel, which is the point: the pattern held up outside
+      the substrate, under pressure, before it was proven inside one. It was
+      later bridged into Veritas as its first external org — Veritas reads
+      Crypto Hunter's already-gated verdicts read-only; it never re-decides
+      anything.
+    </p>
+    <div class="best-at">
+      <div class="bl">An engine built from agents — and the first built on frontier</div>
+      <p>~15 named agents across scouting, verification, intelligence, and
+      strategy, behind one deterministic fail-closed gate. Also the moment
+      local-first stopped being the whole story: everything before it ran
+      free and local to learn the scaffold cheaply; here, real stakes made
+      the frontier spend (Claude Opus 4.8) worth it.</p>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name"><b>Opportunity</b> [Agency AI]</div>
+        <span class="tool-tag tag-studiolab">the recursion</span>
+      </div>
+      <div class="tool-repo"><a href="https://moresalamander.github.io/opportunity-agency-ai/">moresalamander.github.io/opportunity-agency-ai ↗</a></div>
+    </div>
+    <p class="tool-desc">
+      Shipped 2026-07-24. "An agent organization of agent organizations."
+      Where Crypto Hunter is an engine built from agents, Opportunity is an
+      engine built from <em>engines</em> — it reads the verified output of
+      Crypto Hunter, Collectible Hunter, and Free Money Hunter (three
+      independent domain engines sharing one extracted
+      <code>hunter-engine</code> package) and arbitrates a single time/money
+      budget across all three at once, live-validated on real merged data
+      the same day it shipped.
+    </p>
+    <div class="best-at">
+      <div class="bl">An engine built from engines</div>
+      <p>The next unstarted increment: an LLM-driven cross-org debate layer
+      arguing <em>priority</em> across engines, not truth — each engine's own
+      gate already settled that.</p>
+    </div>
+  </div>
+
+  <div class="rule">
+    The three names are one compounding idea, not three products. Veritas is
+    the ground every level stands on — true at every height, not a rung
+    itself. Each Hunter engine is the scaffold applied to one domain.
+    Opportunity is the scaffold applied to composing domains. Same three
+    moves — explain, synthesize, verify — one recursion deeper than
+    my-AI-stro needed to go.
+  </div>
+</section>
+
 <!-- ===== THE SHAPE IN PRACTICE ===== -->
 <section id="practice">
   <h2>The shape in practice</h2>
@@ -520,11 +625,17 @@
       system prompt. Knowing you will be scored changes what you produce.</p>
     </div>
     <div class="principle">
-      <div class="pt">Local-first, free-first</div>
-      <p>All synthesis runs on local models — Ollama, Kokoro, SDXL-turbo,
-      MusicGen, faster-whisper, CLIP — on your own hardware. No paid APIs
-      in the render path. The methodology doesn't require a cloud budget.
-      It requires a scaffold.</p>
+      <div class="pt">Local was practice. Frontier is where it pays.</div>
+      <p>Every project through Veritas ran on local models — Ollama, Kokoro,
+      SDXL-turbo, MusicGen, faster-whisper, CLIP — on the founder's own
+      hardware. That was never an ideology; it was economics. Free, private
+      local models were how the scaffold got learned and proven without
+      burning money proving it. Crypto Hunter AI broke the pattern on
+      purpose: once real stakes were on the line — real crypto opportunities,
+      real money, real scams trying to get past the gate — the frontier API
+      spend (Claude Opus 4.8) was worth it. The same gate runs unchanged
+      either way, because the scaffold was never trusting the model's tier
+      in the first place — only its own verdict.</p>
     </div>
   </div>
 </section>
@@ -537,8 +648,11 @@
     <div class="principle">
       <div class="pt" style="color:var(--accent)">Near-term</div>
       <p>Depth on the flagships (my-AI-stro, The House Always Wins); the
-      Journal of Informal Human Protocols pilot; this public home collecting
-      the work; a coherent visual identity; cross-linked projects.</p>
+      cross-org debate layer for Opportunity (arguing priority across
+      engines, not truth — the genuinely novel piece of the recursion);
+      more Hunter-type engines on the shared <code>hunter-engine</code>
+      package (Grant/Scholarship next); the Journal of Informal Human
+      Protocols pilot; a coherent visual identity.</p>
     </div>
     <div class="principle">
       <div class="pt" style="color:var(--accent2)">Medium-term</div>
