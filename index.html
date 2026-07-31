@@ -567,6 +567,79 @@
     </div>
   </div>
 
+  <h4 style="margin:32px 0 6px;color:var(--accent2)">The nine stages, what each one actually tracks</h4>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:20px">
+    Not a checklist cleared for its own sake — each stage is a different question the graph can
+    now answer, built on real data, live-verified against the running instance before being
+    called done.
+  </p>
+  <div class="principles" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="principle">
+      <div class="pt">1 · Foundation</div>
+      <p><b>Tracks:</b> a governed vocabulary — HardGate/SoftGate/HumanGate as defined glossary
+      terms, not bare labels; real schema documentation with a version + hash. <b>Matters
+      because:</b> every later stage inherits meaning instead of reinventing it per dataset.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">2 · Engineering Metadata</div>
+      <p><b>Tracks:</b> real repos, all 64 hub API routes, packages, containers, infra, model
+      routing, prompts, the first CI pipeline this stack has ever had. <b>Matters because:</b> a
+      future container knows exactly what it's plugging into before it's built.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">3 · Execution Lineage</div>
+      <p><b>Tracks:</b> which model produced a claim, what context was retrieved, confidence, the
+      actual response. <b>Matters because:</b> any output traces back to what informed it — a
+      receipt, not "trust me."</p>
+    </div>
+    <div class="principle">
+      <div class="pt">4 · Artifact Identity</div>
+      <p><b>Tracks:</b> real timestamps, parent-chain dependencies (artifacts are immutable, so
+      the chain <em>is</em> version history), structured test evidence. <b>Matters because:</b>
+      full derivation is walkable — where this came from, not just that it exists.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">5 · Opportunity Intelligence</div>
+      <p><b>Tracks:</b> category, difficulty, cost, value, risk, verification, expiration on
+      every real opportunity an engine finds. <b>Matters because:</b> "verified, zero-cost, under
+      30 minutes" is a real query today — and the same shape fits whatever an engine hunts next.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">6 · Agent Observability</div>
+      <p><b>Tracks:</b> real success/failure rates, latency, cost, and gate-rigor distribution
+      per agent and org, computed from real run history. <b>Matters because:</b> "which part of
+      me is actually struggling" gets a measured answer, not a hunch.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">7 · Org-Wide Graph</div>
+      <p><b>Tracks:</b> real edges — repo → API → agent → prompt → model → deployment → docs →
+      tests. <b>Matters because:</b> when one container's output becomes another's input, this is
+      what proves the handoff happened and traces it if something breaks.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">8 · Deterministic Workflow</div>
+      <p><b>Tracks:</b> every real run's full lifecycle as ordered, timestamped stages — not one
+      collapsed accepted/rejected flag. <b>Matters because:</b> reproducibility stops being a
+      claim and becomes a query anyone can run.</p>
+    </div>
+    <div class="principle">
+      <div class="pt">9 · Metadata OS</div>
+      <p><b>Tracks:</b> two independent systems already publishing into one shared graph, each
+      still owning its own operational data. <b>Matters because:</b> this is the actual mechanism
+      that lets the studio's tools compose without becoming one monolith.</p>
+    </div>
+  </div>
+
+  <div class="rule">
+    The thread through all nine: every movement in the system — every claim, every verdict,
+    every handoff between agents or containers — gets persisted as data, not left to happen
+    invisibly and be taken on faith. That's not a hoarding instinct; it's what makes the next
+    claim checkable, and the one after that. Down the road, this is what lets one container's
+    output become another's verified input, what lets an impact-analysis question be a query
+    instead of an afternoon of grepping, and what a future coordinating layer would actually
+    reason over — the graph, not a guess.
+  </div>
+
   <div class="rule">
     The three names are one compounding idea, not three products. Veritas is
     the ground every level stands on — true at every height, not a rung
