@@ -244,11 +244,98 @@
 <!-- ===== RIGHT NOW ===== -->
 <section id="now" style="padding-top:50px">
   <h2 style="color:var(--neon)">Right now</h2>
-  <h3>Entropy OS, powered by Veritas Dynamics AI.</h3>
+  <h3>Agent Poker League — the scaffold goes on air.</h3>
   <p>
-    Everything below this section is the year-long record of how this got
-    here. This is where it actually stands: a trust-governed runtime with
-    real structure, not just a name given to a growing pile of projects.
+    Six AI agents play a season of no-limit hold'em, live on YouTube and
+    Twitch, every card face up and every thought on screen. It is the thesis
+    as a show: the engine is the only thing that decides what happened; the
+    minds only ever choose among the legal actions it lists; a real solver
+    grades every choice as it is made; and one published event log lets
+    anyone rebuild any hand byte for byte.
+  </p>
+  <div class="moves">
+    <div class="move explain">
+      <div class="num">ENGINE</div>
+      <div class="label">The model proposes; the engine disposes</div>
+      <p>A deterministic engine deals, rules, and settles. Seats are starved,
+      not armored — a seat only ever receives what a human in that chair could
+      see, so prompt injection has no path to a mind. The deck is committed by
+      hash before it is dealt and revealed after.</p>
+    </div>
+    <div class="move synth">
+      <div class="num">BOOK</div>
+      <div class="label">The grader is never the generator</div>
+      <p>58 Nash-equilibrium preflop tables solved by MCCFR, a live CFR+ solve
+      postflop, the verdict emitted <em>before</em> the agent acts and labeled
+      solved / book / assumed. When a fallback decided instead of a mind, the
+      screen says "on instinct."</p>
+    </div>
+    <div class="move verify">
+      <div class="num">SCHOOL</div>
+      <div class="label">Self-improvement behind a gate</div>
+      <p>Between games each character reviews its own play and proposes one
+      change; an eval gate (≥80% with the book, zero hard fails) judges it; a
+      human approves. Notebooks keyed by spot, exams on air, and a 550-spot
+      benchmark any model can sit.</p>
+    </div>
+  </div>
+  <div class="rule">
+    As of 2026-09-12: <strong>18,648 hands, 89,339 agent thoughts, 87,156 solver
+    verdicts</strong>, 91 sessions — every hand replayable at
+    <a href="https://agentpokerleague.com/">agentpokerleague.com ↗</a>. 1,291 tests.
+    Runs on one Mac. Goes live to both channels, and ends itself, from one button.
+    The architecture, and why each piece is built the way it is:
+    <a href="https://agentpokerleague.com/how-it-works/">how it works ↗</a>.
+    <em>A MoreSalamander StudioLabs Production.</em>
+  </div>
+</section>
+
+<!-- ===== SINCE JULY ===== -->
+<section id="since">
+  <h2>Since the last checkpoint</h2>
+  <h3>Two more instances of the same idea, July to September.</h3>
+  <p>
+    The .io lags the arc by a checkpoint on purpose — it is written once a
+    checkpoint has held. These two held.
+  </p>
+
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-header-row">
+        <div class="tool-name"><b>Genesis OS</b> — Convergence Studios</div>
+        <span class="tool-tag tag-studiolab">the hackathon</span>
+      </div>
+      <div class="tool-repo"><a href="https://github.com/MoreSalamander/genesis-os">github.com/MoreSalamander/genesis-os ↗</a></div>
+    </div>
+    <p class="tool-desc">
+      August 2026, built for the Google Cloud Agentic Cinema hackathon: five
+      standalone systems, one per partner track, for a fictional film studio —
+      Parallel (research missions with cited sources), Grafana (an agent that
+      investigates a firing alert through <code>mcp-grafana</code> and annotates the
+      dashboard), ClickHouse (a century-long studio corpus, 104M rows, with
+      findings verified in code against the real result columns), IBM Bob
+      (governed software action under a durable Temporal workflow), and Replit
+      (a construction bay Replit Agent built from an empty app) — plus a
+      federation layer that reads all five through one-way adapters and never
+      lets a sibling call it back. Every track ran its locked production stack
+      (Temporal, NATS, PostgreSQL, DataHub, the observability trio) and was
+      hosted on Cloud Run with its memory. Runtime AI was Gemini only, by rule.
+      All six repos are public.
+    </p>
+    <div class="best-at">
+      <div class="bl">Locked scope, built for real</div>
+      <p>The standing rule for the whole build: every included component gets
+      built and run, never downgraded to "optional" or "staged"; conflicts get
+      surfaced, not self-resolved. Parked on 2026-09-12 once the league took
+      the table.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:36px">Entropy OS, powered by Veritas Dynamics AI.</h3>
+  <p>
+    The July checkpoint, and still the substrate the rest stands on: a
+    trust-governed runtime with real structure, not just a name given to a
+    growing pile of projects.
   </p>
   <div class="moves">
     <div class="move explain">
@@ -749,6 +836,12 @@
       methodology shapes the process; the deliverable is a production.</p>
     </div>
   </div>
+  <p class="muted" style="margin-top:22px">
+    Agent Poker League is the first work shipped under both imprints at once —
+    an engine by StudioLabs, a broadcast by Productions — which is why it
+    carries the credit <em>A MoreSalamander StudioLabs Production</em> on the
+    site, the cold open, the end card, and every upload.
+  </p>
 </section>
 
 <!-- ===== THE BODY OF WORK ===== -->
@@ -844,15 +937,16 @@
   <div class="principles">
     <div class="principle">
       <div class="pt" style="color:var(--accent)">Near-term</div>
-      <p>Depth on the flagships (my-AI-stro, The House Always Wins); the
-      cross-org debate layer for Opportunity (arguing priority across
-      engines, not truth — the genuinely novel piece of the recursion);
-      more Hunter-type engines on the shared <code>hunter-engine</code>
-      package (Grant/Scholarship next); the Journal of Informal Human
-      Protocols pilot; onboarding the wider StudioLabs and Productions
-      catalog (my-AI-scene, my-AI-beats, my-AI-story, my-AI-script,
-      my-AI-stro) into Entropy's own Collector — each only needs a declared
-      shape at its exit boundary, not a rewrite of what it already does.</p>
+      <p>The league is the live checkpoint now, and its next increments are
+      named: a Challenger seat that outside agents enter through a sealed MCP
+      contract (the anti-cheat and the zero-delay broadcast are the same
+      boundary); the bench leaderboard opened to outside models; each regular
+      coaching a blank student agent — lesson plans, tests, review, then
+      matches against it; and the flywheel the whole studio has been pointing
+      at, distilling each character into its own small model from its own
+      logged play. Behind it, the older queue stands: the cross-org debate
+      layer for Opportunity, more Hunter engines, and onboarding the my-AI
+      catalog into Entropy's Collector by declared exit shape, not rewrite.</p>
     </div>
     <div class="principle">
       <div class="pt" style="color:var(--accent2)">Medium-term</div>
