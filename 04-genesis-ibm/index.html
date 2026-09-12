@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis OS 04 — Enterprise Decision Intelligence</title>
+<meta name="description" content="Decision governance for a film studio: criterion scores computed in code, a Bob-built policy engine judging compliance in code, authorization as a durable human signal, and approved decisions that become software. IBM track, Google Cloud Agentic Cinema hackathon.">
+<link rel="stylesheet" href="../_shared/explainer.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="crumb"><a href="../">MoreSalamander</a> / <a href="../projects.html">projects</a> / <a href="../genesis-os/">Genesis OS</a> / 04</div>
+  <h1>04 · Enterprise Decision <span>Intelligence</span></h1>
+  <p class="lede">Where its siblings discover, operate, and remember, this system
+  <em>decides</em>: given everything we know — what should we do, are we allowed to
+  do it, and who must say yes?</p>
+  <div class="links">
+    <a class="primary" href="https://github.com/MoreSalamander/04-genesis-ibm">Source on GitHub ↗</a>
+    <a href="https://genesis-ibm-console-287997351116.us-central1.run.app">Hosted console ↗</a>
+    <a href="../genesis-os/">The federation</a>
+    <a href="../05-genesis-replit/">Next · 05 Construction</a>
+  </div>
+</header>
+
+<h2>The decision lifecycle</h2>
+<div class="scroll"><pre>Proposal → Evidence Package → Criterion Scores (code) → Policy Findings (code, Bob-built engine)
+  → Governance Verdict → RECOMMENDED → Studio Head signal (approve / reject / request revision)
+  → AUTHORIZED → Authorized Software Objective → IBM Bob → ACTIONED → CLOSED → DataHub</pre></div>
+
+<h2>What is computed, and what is not</h2>
+<ul>
+  <li><strong>Criterion scores are computed in code</strong> from declared weights. Gemini
+  evaluates qualitative criteria with citations; it never emits the aggregate.</li>
+  <li><strong>A versioned policy engine judges compliance in code</strong> —
+  <code>COMPLIANT / VIOLATION / NEEDS_REVIEW / EXEMPT</code>, each finding citing its
+  clause. The governance verdict is a function of findings.</li>
+  <li><strong>Authorization is a durable Temporal signal held for a human.</strong> The
+  worker can die during the pause, the approval can land with no worker alive, and the
+  decision resumes when the worker returns — demonstrated, not described.</li>
+  <li><strong>Approved decisions become software.</strong> An Authorized Software
+  Objective is executed by IBM Bob, and the delivery evidence is attached to the dossier.</li>
+</ul>
+
+<h2>Built with IBM Bob — the track requirement</h2>
+<table>
+  <tr><th>Evidence</th><th>Where</th></tr>
+  <tr><td>Bob-built policy engine and policy packs</td><td><code>app/governance/</code> · <code>policy/</code></td></tr>
+  <tr><td>Bob-built console dossier panel</td><td><code>frontend/components/PolicyFindings.tsx</code></td></tr>
+  <tr><td>Session records, plans, diffs</td><td><code>docs/bob-evidence/</code></td></tr>
+  <tr><td>Software-Action delivery</td><td>attached to the decision dossier</td></tr>
+</table>
+<p>Bob is used exactly as the track prescribes — in the development process — while the
+shipped runtime's AI is Gemini on Vertex only.</p>
+
+<h2>Run it</h2>
+<div class="scroll"><pre>cd ops && docker compose up -d && cd ..                 # PG · NATS · Temporal · Redis · MinIO
+python3.12 -m venv .venv && .venv/bin/pip install -e ".[dev]"
+.venv/bin/python -m seed.proposals                      # flagship proposal fixture
+.venv/bin/uvicorn app.main:app --port 8030              # API (boots in MOCK mode without keys)</pre></div>
+
+<footer>
+  <a href="https://github.com/MoreSalamander/04-genesis-ibm">Source on GitHub</a> ·
+  <a href="../genesis-os/">Genesis OS</a> ·
+  <a href="../">MoreSalamander StudioLabs</a>
+  <br><br>
+  <em>A MoreSalamander StudioLabs Production.</em>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis OS 03 — Institutional Intelligence</title>
+<meta name="description" content="Multi-agent analytical cognition over a century of studio history through the official ClickHouse MCP server: 104M rows, statistics computed in code, findings with rule-derived verification states. ClickHouse track, Google Cloud Agentic Cinema hackathon.">
+<link rel="stylesheet" href="../_shared/explainer.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="crumb"><a href="../">MoreSalamander</a> / <a href="../projects.html">projects</a> / <a href="../genesis-os/">Genesis OS</a> / 03</div>
+  <h1>03 · Institutional <span>Intelligence</span></h1>
+  <p class="lede">A century of institutional history — Convergence Studios, founded
+  1912, about 4,600 productions across ten industry eras, roughly 104 million fact
+  rows seeded deterministically in two and a half minutes — and a multi-agent system
+  that answers: <em>what does our history tell us, and what happens if we change this
+  assumption?</em></p>
+  <div class="links">
+    <a class="primary" href="https://github.com/MoreSalamander/03-genesis-clickhouse">Source on GitHub ↗</a>
+    <a href="https://genesis-clickhouse-console-287997351116.us-central1.run.app">Hosted console ↗</a>
+    <a href="../genesis-os/">The federation</a>
+    <a href="../04-genesis-ibm/">Next · 04 Decision</a>
+  </div>
+</header>
+
+<h2>Not "chat with your database"</h2>
+<p>Investigations are multi-step analytical campaigns — baseline → cohort →
+comparison → trend → simulation — where every number comes from ClickHouse through
+the official <code>mcp-clickhouse</code> server, every statistic is computed in
+code, and every finding carries a verification state derived by rule, never
+asserted by the model.</p>
+
+<div class="scroll"><pre>Studio Head question
+  → Analytical Planner          hypotheses per cognitive domain
+  → Query Engineer              Gemini writes SQL, schema-grounded, SELECT-only enforced in code
+  → official mcp-clickhouse     → ClickHouse (1912–2026 corpus, ~104M rows)
+  → Statistical Verification    states computed in Python
+  → Competing interpretations → Findings → Scenario simulation
+  → Recommendation              confidence = verification coverage
+  → Studio Head                 approve / reject / request deeper analysis   (Temporal signal)
+  → VERIFIED knowledge promoted to DataHub with full query lineage</pre></div>
+
+<h2>The verification states</h2>
+<table>
+  <tr><th>State</th><th>Meaning</th></tr>
+  <tr><td><code>VERIFIED</code></td><td>effect size holds against dispersion (scale-free, so 104M rows cannot buy significance) <em>and</em> holds across at least three eras</td></tr>
+  <tr><td><code>REGIME</code></td><td>a truth with an era boundary — real, bounded, promoted with its range</td></tr>
+  <tr><td><code>WEAK</code></td><td>present but under the bar</td></tr>
+  <tr><td><code>CONTESTED</code></td><td>conflicting analyses, preserved side by side, never silently resolved</td></tr>
+  <tr><td><code>INSUFFICIENT</code></td><td>not enough to say</td></tr>
+</table>
+<p>The corpus was engineered with known truths — overrun ordering indie &lt; mid &lt;
+tentpole, a sequel opening premium, seasonality, and one deliberately contested
+sequel pair where the raw cohort says premium and seven of nine within-franchise
+comparisons say fatigue — so the states can be checked against what was seeded.</p>
+
+<h2>Runtime proof</h2>
+<table>
+  <tr><th>Requirement</th><th>Where</th></tr>
+  <tr><td>Official <code>mcp-clickhouse</code> MCP server at runtime</td><td><code>app/tools/clickhouse_mcp/client.py</code>; agents reach ClickHouse <em>only</em> through it, as a read-only user</td></tr>
+  <tr><td>Google Cloud AI at runtime</td><td>Gemini on Vertex via <code>google-genai</code></td></tr>
+  <tr><td>Durable human authority</td><td>the Studio Head's approve / reject / request-deeper is a Temporal signal; a worker killed mid-pause, an approval landing with no worker alive, and a resumed, promoted decision were all demonstrated</td></tr>
+  <tr><td>Hosted</td><td>a three-container Cloud Run pod: API, the official MCP server, and self-hosted ClickHouse with the corpus backup baked in and restored per instance behind a startup probe</td></tr>
+</table>
+
+<h2>Run it</h2>
+<div class="scroll"><pre>cd ops && docker compose up -d --build && cd ..   # ClickHouse + mcp-clickhouse + PostgreSQL + NATS + Temporal + Redis
+python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"
+.venv/bin/python -m seed.build                     # the deterministic 1912–2026 corpus</pre></div>
+
+<footer>
+  <a href="https://github.com/MoreSalamander/03-genesis-clickhouse">Source on GitHub</a> ·
+  <a href="../genesis-os/">Genesis OS</a> ·
+  <a href="../">MoreSalamander StudioLabs</a>
+  <br><br>
+  <em>A MoreSalamander StudioLabs Production.</em>
+</footer>
+
+</div>
+</body>
+</html>

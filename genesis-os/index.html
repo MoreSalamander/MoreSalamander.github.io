@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis OS — Studio Cognition</title>
+<meta name="description" content="The federation layer over Convergence Studios' five standalone systems: federated missions, pass-through authority, cross-system lineage. Built for the Google Cloud Agentic Cinema hackathon.">
+<link rel="stylesheet" href="../_shared/explainer.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="crumb"><a href="../">MoreSalamander</a> / <a href="../projects.html">projects</a> / Genesis OS</div>
+  <h1>Genesis <span>OS</span></h1>
+  <p class="lede">The layer above Convergence Studios' five standalone systems. Not a
+  submission itself — the umbrella that proves the five submissions are one operating
+  environment.</p>
+  <div class="links">
+    <a class="primary" href="https://github.com/MoreSalamander/genesis-os">Source on GitHub ↗</a>
+    <a href="../01-genesis-parallel/">01 · Signal</a>
+    <a href="../02-genesis-grafana/">02 · Operational</a>
+    <a href="../03-genesis-clickhouse/">03 · Institutional</a>
+    <a href="../04-genesis-ibm/">04 · Decision</a>
+    <a href="../05-genesis-replit/">05 · Construction</a>
+  </div>
+</header>
+
+<h2>The claim</h2>
+<div class="keystone">
+<p style="margin:0"><strong>01 discovers. 02 operates. 03 remembers. 04 decides. 05 builds.
+Genesis OS asks all of them at once</strong> — and never lets any of them depend on it.</p>
+</div>
+<p>A <em>federated mission</em> takes a Studio Head objective, dispatches it across
+the standalone systems through one-way contract adapters, aggregates their evidence
+without re-verification (every item keeps its producing system and the verification
+state that system computed), assembles a governed proposal for the decision system,
+passes the Studio Head's authorization through to 04's own durable signal, and
+closes with a dossier promoted to DataHub carrying cross-system lineage — one
+decision traceable through four independent evidence systems in a single graph.</p>
+
+<div class="scroll"><pre>Objective → plan → [01 signal ∥ 02 operational ∥ 03 institutional] → aggregate
+  → proposal → 04 governance → Studio Head authorization (pass-through)
+  → Authorized Software Objective → 05 construction → dossier</pre></div>
+
+<h2>Hard rules, locked</h2>
+<table>
+  <tr><th>Rule</th><th>What it means in code</th></tr>
+  <tr><td><strong>No standalone depends on Genesis OS</strong></td><td>Adapters are HTTP
+    consumers of public APIs; contracts are vendored documents; no code is shared, and
+    a sibling never calls back.</td></tr>
+  <tr><td><strong>No re-verification, no upgrades</strong></td><td>VERIFIED / CONFLICTED /
+    CONTESTED / WEAK pass through exactly as produced into the proposal 04 governs.</td></tr>
+  <tr><td><strong>No autonomous authority</strong></td><td>Sibling investigations are
+    evidence, closed with a machine-noted rejection (bookkeeping, not judgment); the only
+    approvals in a mission are the Studio Head's own.</td></tr>
+  <tr><td><strong>Honest degradation</strong></td><td>A capability that is down is recorded
+    UNAVAILABLE and the mission continues or fails INCOMPLETE — never fabricated
+    evidence. The masthead reports partner substrates from observed calls, not
+    configured strings.</td></tr>
+</table>
+
+<h2>Why it is built this way</h2>
+<p>This is the <a href="../">Deterministic Scaffold</a>'s composition rule at hackathon
+scale: engines built independently, joined by contract, judged by their own gates,
+with the human authority boundary held in exactly one place. The standing rule for
+the whole Genesis build was that every included component gets built and run for real
+— Temporal, NATS, PostgreSQL, DataHub, the observability trio, hosted on Cloud Run
+with its memory — never downgraded to "optional" or "staged"; conflicts with the locked
+architecture get surfaced, not self-resolved.</p>
+
+<h2>The mission library</h2>
+<p>Four curated missions plus free-form objectives: render-capacity expansion (the
+continuity anchor), title greenlight, operational crisis response, strategic response.
+Sequential-active; every completed mission stays on the ledger.</p>
+
+<h2>Run it</h2>
+<div class="scroll"><pre>cd ops && docker compose up -d && cd ..        # PG · NATS · Temporal · Redis · MinIO
+python3.12 -m venv .venv && .venv/bin/pip install -e ".[dev]"
+cp .env.example .env                           # sibling API URLs + Vertex config
+.venv/bin/uvicorn app.main:app --port 8040     # federation API
+.venv/bin/python -m app.workflows.worker       # durable mission worker
+cd frontend && npm install && npm run dev      # the bridge on :3040</pre></div>
+<p><code>GENESIS_MOCK=1</code> runs the loop from a clean clone. Live mode expects the
+sibling systems running from their own repos.</p>
+
+<h2>Status</h2>
+<p>Built August 12–26, 2026 for the Google Cloud Agentic Cinema hackathon. Parked
+on September 12, 2026, when the <a href="../apl/">league</a> took the table. The
+repositories stay public.</p>
+
+<footer>
+  <a href="https://github.com/MoreSalamander/genesis-os">Source on GitHub</a> ·
+  <a href="../">MoreSalamander StudioLabs</a>
+  <br><br>
+  <em>A MoreSalamander StudioLabs Production.</em>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis OS 01 — Signal Intelligence</title>
+<meta name="description" content="External intelligence for an AI-native film studio: agents plan a mission, retrieve real evidence through Parallel's Search API, verify claims preserving disagreement, and answer the Studio Head. Parallel track, Google Cloud Agentic Cinema hackathon.">
+<link rel="stylesheet" href="../_shared/explainer.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="crumb"><a href="../">MoreSalamander</a> / <a href="../projects.html">projects</a> / <a href="../genesis-os/">Genesis OS</a> / 01</div>
+  <h1>01 · Signal <span>Intelligence</span></h1>
+  <p class="lede">External intelligence for an AI-native film studio. Watch its
+  intelligence bureau research the outside world: agents plan a mission, retrieve
+  real evidence through Parallel's Search API, verify claims while preserving
+  disagreement, and answer the one question the Studio Head asked.</p>
+  <div class="links">
+    <a class="primary" href="https://github.com/MoreSalamander/01-genesis-parallel">Source on GitHub ↗</a>
+    <a href="https://genesis-parallel-console-287997351116.us-central1.run.app">Hosted console ↗</a>
+    <a href="../genesis-os/">The federation</a>
+    <a href="../02-genesis-grafana/">Next · 02 Operational</a>
+  </div>
+</header>
+
+<h2>The question it answers</h2>
+<div class="keystone"><p style="margin:0"><em>"What is happening outside the studio that
+should change what we do?"</em></p></div>
+
+<h2>The loop</h2>
+<div class="scroll"><pre>STUDIO HEAD objective
+  → SIGNAL INTELLIGENCE EXECUTIVE     owns the objective, not the searches
+  → RESEARCH PLANNER                  Gemini decomposes it dynamically
+  → MARKET ∥ TALENT ∥ INDUSTRY ∥ STRATEGIC     four locked cognitive domains
+  → PARALLEL SEARCH API               external observation, at runtime
+  → EVIDENCE → VERIFICATION           VERIFIED / UNVERIFIED / CONFLICTED, conflicts kept
+       ↑ PROVENANCE AUDIT             re-opens a claim's pages and quotes what they say NOW
+  → KNOWLEDGE GRAPH                   Source → Evidence → Claim → Entity
+  → STRATEGIC COGNITION → RECOMMENDATION     confidence + evidence trail
+  → COVERAGE AUDIT                    which findings rest on nothing verified?
+  → NESTED QUESTIONS                  each shortfall becomes a question of its own (≤4, never recursive)
+  → STUDIO HEAD                       approve / reject / request more research</pre></div>
+
+<h2>What makes it not a search chatbot</h2>
+<ul>
+  <li><strong>Verification states are computed, not asserted.</strong> A claim with no
+  corroboration is UNVERIFIED on the record; a contradiction is CONFLICTED and shown,
+  never resolved by the model.</li>
+  <li><strong>The provenance audit puts no model between page and panel.</strong> A
+  claim's recorded pages are re-opened on demand and quoted verbatim, or honestly
+  reported UNREACHABLE.</li>
+  <li><strong>The answer is read back against its own graph.</strong> The coverage audit
+  finds which findings rest on nothing verified, and turns each shortfall into a
+  nested question that is researched like one you typed — bounded to four, and a
+  raised question never raises more.</li>
+  <li><strong>The human authority boundary is a workflow signal.</strong> Missions run in
+  a Temporal worker; approval is a durable signal the Studio Head sends.</li>
+</ul>
+
+<h2>Runtime proof</h2>
+<table>
+  <tr><th>Requirement</th><th>Where</th></tr>
+  <tr><td>Parallel Search API at runtime</td><td>verified live with 25 real sources retrieved in the verification mission</td></tr>
+  <tr><td>Google Cloud AI at runtime</td><td>Gemini via <code>google-genai</code></td></tr>
+  <tr><td>Honest degradation</td><td>with no keys it boots in MOCK mode; every substrate chip reads MOCK rather than pretending</td></tr>
+</table>
+
+<h2>Run it</h2>
+<div class="scroll"><pre>uv venv .venv --python 3.12 && uv pip install -p .venv -e ".[dev]"
+./ops/dev.sh          # API :8000 + Temporal worker + console :3000, one process group</pre></div>
+
+<footer>
+  <a href="https://github.com/MoreSalamander/01-genesis-parallel">Source on GitHub</a> ·
+  <a href="../genesis-os/">Genesis OS</a> ·
+  <a href="../">MoreSalamander StudioLabs</a>
+  <br><br>
+  <em>A MoreSalamander StudioLabs Production.</em>
+</footer>
+
+</div>
+</body>
+</html>

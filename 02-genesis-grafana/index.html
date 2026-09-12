@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis OS 02 — Operational Intelligence</title>
+<meta name="description" content="Agentic operational cognition for an AI-native film studio: an agent hierarchy investigates through the Grafana MCP server, diagnoses, predicts, recommends, and verifies the fix. Grafana track, Google Cloud Agentic Cinema hackathon.">
+<link rel="stylesheet" href="../_shared/explainer.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="crumb"><a href="../">MoreSalamander</a> / <a href="../projects.html">projects</a> / <a href="../genesis-os/">Genesis OS</a> / 02</div>
+  <h1>02 · Operational <span>Intelligence</span></h1>
+  <p class="lede">Ask "How is production doing right now?" and watch an agent hierarchy
+  investigate through the Grafana MCP server — metrics, logs, and alert rules queried
+  at runtime — diagnose, predict, recommend, act under a human's authority, and
+  re-query to prove the fix worked.</p>
+  <div class="links">
+    <a class="primary" href="https://github.com/MoreSalamander/02-genesis-grafana">Source on GitHub ↗</a>
+    <a href="https://genesis-grafana-console-287997351116.us-central1.run.app">Hosted console ↗</a>
+    <a href="../genesis-os/">The federation</a>
+    <a href="../03-genesis-clickhouse/">Next · 03 Institutional</a>
+  </div>
+</header>
+
+<h2>The locked operational loop</h2>
+<div class="scroll"><pre>OBSERVE → CORRELATE → DIAGNOSE → PREDICT → RECOMMEND → AUTHORIZE → ACT → VERIFY
+   │           │           │          │          │           │        │       │
+Grafana MCP  hypothesis  competing  time-to-  bounded    Studio   studio   Grafana MCP
+(metrics,    validated   root-cause threshold remediation  Head   control  re-queried:
+logs,        against     hypotheses (computed  plan       decides  plane   before/after
+alerts)      evidence    w/ contra-  from real                             must improve
+                         dictions    slopes)</pre></div>
+<p>Agent hierarchy, locked: Operational Executive → Metrics / Log / Trace Analysts and an
+Alert Scanner → Correlation Agent → Incident Diagnosis Agent → Risk/Prediction Agent →
+Remediation Planning Agent — each with scoped permissions.</p>
+
+<h2>What the track asked for, and where it lives</h2>
+<table>
+  <tr><th>Requirement</th><th>Where</th></tr>
+  <tr><td>Grafana at runtime via the official Grafana MCP server (<code>query_prometheus</code>,
+    <code>query_loki_logs</code>, <code>list_alert_rules</code>, <code>list_datasources</code>)</td>
+    <td><code>app/tools/grafana/mcp_client.py</code>; the hosted pod runs an <code>mcp-grafana</code>
+    sidecar against Grafana Cloud with a service account</td></tr>
+  <tr><td>Gemini at runtime</td><td><code>app/tools/google/gemini.py</code></td></tr>
+  <tr><td>Closed-loop actuation + verification</td><td><code>app/agents/executive/executive.py</code>
+    — a recommendation is not done until the same signal is re-queried and has improved</td></tr>
+  <tr><td>Human authority boundary and permission tiers</td><td><code>app/governance/authority.py</code></td></tr>
+</table>
+
+<h2>Why it is built this way</h2>
+<p>The brief's thesis was "build an agent that uses observability data, and observe the
+agent you build." So the time-to-threshold prediction is computed from real slopes,
+not guessed; competing root-cause hypotheses are carried with their contradictions;
+and every investigation is itself observable. The Grafana annotation at the end is
+the human's review point, not the agent's victory lap.</p>
+
+<h2>Run it</h2>
+<div class="scroll"><pre>uv venv .venv && uv pip install -p .venv -e ".[dev]"
+.venv/bin/uvicorn app.main:app --port 8010     # MOCK mode: a deterministic render-pipeline incident, offline
+cd ops && docker compose up -d && cd ..        # LIVE: Grafana + Prometheus + Loki + mcp/grafana + render-farm simulator</pre></div>
+
+<footer>
+  <a href="https://github.com/MoreSalamander/02-genesis-grafana">Source on GitHub</a> ·
+  <a href="../genesis-os/">Genesis OS</a> ·
+  <a href="../">MoreSalamander StudioLabs</a>
+  <br><br>
+  <em>A MoreSalamander StudioLabs Production.</em>
+</footer>
+
+</div>
+</body>
+</html>

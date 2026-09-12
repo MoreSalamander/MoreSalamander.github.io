@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Poker League — the scaffold goes on air</title>
+<meta name="description" content="Six AI agents play a season of hold'em live, every card face up and every thought on screen. A deterministic engine disposes, a real solver grades every decision, a gated school lets the characters rewrite themselves, and every hand replays byte for byte. A MoreSalamander StudioLabs Production.">
+<link rel="stylesheet" href="../_shared/explainer.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="crumb"><a href="../">MoreSalamander</a> / <a href="../projects.html">projects</a> / Agent Poker League</div>
+  <h1>Agent Poker <span>League</span></h1>
+  <p class="lede">Six AI agents play a season of no-limit hold'em, live, with every
+  card face up and every thought on screen. A solver grades each decision as it
+  is made. Every hand can be rebuilt byte for byte from a public log.</p>
+  <div class="links">
+    <a class="primary" href="https://agentpokerleague.com/">agentpokerleague.com ↗</a>
+    <a href="https://agentpokerleague.com/how-it-works/">How it works, in depth ↗</a>
+    <a href="https://www.youtube.com/@agentpokerleague">YouTube · @agentpokerleague ↗</a>
+    <a href="https://www.twitch.tv/0ne29">Twitch · 0ne29 ↗</a>
+    <a href="https://agentpokerleague.com/replay/">Replay any hand ↗</a>
+    <a href="https://agentpokerleague.com/book/">The solved book ↗</a>
+    <a href="https://agentpokerleague.com/play/">Play the spot ↗</a>
+    <a class="dead" title="The repository is private while the league is in season.">Source · private</a>
+  </div>
+</header>
+
+<h2>The claim</h2>
+<p>The <a href="../">Deterministic Scaffold</a> says the model proposes and a
+deterministic system decides what survives, and that the grader is never the
+generator. Every earlier project in the studio applied that to a pipeline
+someone ran. The league applies it to a <em>show</em>: the untrusted
+decision-makers are the stars, the deterministic core is the table, the gate is
+the solver, and the audience watches the gate work in real time.</p>
+
+<div class="scroll"><pre>ENGINE   deals · rules · pots                 authoritative, deterministic, seeded
+  │
+  ├── SEATS   six minds, each starved         sees only what a human in that chair could
+  │           choose among LEGAL actions only  garbage or silence ⇒ engine default
+  │
+  └── EVENT LOG   one append-only stream      36 schema'd event types, visibility-scoped
+        ├── booth + overlay + instant replay
+        ├── THE BOOK   solver verdict per decision, emitted BEFORE the action
+        ├── the public site   every hand replayable
+        ├── THE SCHOOL   locker room → gate → human approve
+        └── THE BENCH   550 pre-solved spots, any model can sit</pre></div>
+
+<h2>By the numbers</h2>
+<div class="nums">
+  <div class="num"><b>18,648</b><span>hands played, logged, replayable</span></div>
+  <div class="num"><b>89,339</b><span>agent thoughts on record</span></div>
+  <div class="num"><b>87,156</b><span>solver verdicts, one per decision</span></div>
+  <div class="num"><b>2.9M</b><span>events in the season log</span></div>
+  <div class="num"><b>91</b><span>sessions, every hand replayable</span></div>
+  <div class="num"><b>1,291</b><span>tests, engine to overlay</span></div>
+  <div class="num"><b>1 Mac</b><span>runs the table, the minds, the show</span></div>
+  <div class="num"><b>2</b><span>channels at once, from one button</span></div>
+</div>
+<p style="margin-top:14px;font-size:13.5px;color:var(--muted)">As of 2026-09-12. The site
+recomputes these from the logs at every publish; this page is a snapshot.</p>
+
+<h2>Explain — the doctrine written before any model plays</h2>
+<ul>
+  <li><strong>The engine is the only thing that decides what happened.</strong> It
+  deals, enforces the rules, computes legal actions, settles pots. An agent returns
+  one of the legal actions it was handed. Garbage or silence ⇒ the engine plays the
+  default (check if free, otherwise fold). Nothing an agent does can break a hand.</li>
+  <li><strong>Seats are starved, not armored.</strong> A seat receives exactly what a
+  human in that chair could see. Other hole cards, other thoughts, lean bars, win
+  probabilities, solver verdicts, chat — none of it exists on the agent's side of
+  the boundary. Prompt injection is a reachability problem, and nothing hostile has
+  a path to a model. Twitch chat is reduced to vote tokens and counts by a module
+  that never lets a message's text leave it.</li>
+  <li><strong>The deck is committed before it is dealt.</strong> <code>sha256(seed:handId)</code>
+  is published in the hand's opening event; the engine never sees the seed; it is
+  revealed after the hand. Anyone with the log regenerates the deck and confirms the
+  hash. That is also how the ghost line works — a folded winner is rebuilt with a
+  call in place of the fold.</li>
+  <li><strong>Play money, on purpose.</strong> A version where you fund an agent is
+  regulated gambling, so it is not built. If stakes ever arrive they climb a legal
+  ladder: play money, sponsored prizes, licensed play. The house sits at the booth,
+  never at the table.</li>
+</ul>
+
+<h2>Synthesize — the minds</h2>
+<div class="cards">
+  <div class="card"><h3>Vera "The Vault"</h3><p>The solver itself, sampling from the
+    Book's own mix; a local model narrates the decision in character, never the other
+    way round.</p></div>
+  <div class="card"><h3>Moose</h3><p>The aggressor. A 12B open-weight model, off the
+    book two thirds of the time, three sit-n-go wins to show for it.</p></div>
+  <div class="card"><h3>The Professor</h3><p>The theorist. 12B, the cash-game leader,
+    highest solver agreement of the LLM seats.</p></div>
+  <div class="card"><h3>Petey "Two Streets"</h3><p>The gambler. A 3B model that calls
+    everything; his ceiling is canon, not a bug.</p></div>
+  <div class="card"><h3>Auntie Rose</h3><p>The trapper. 12B, the straight-flush record
+    holder, king high.</p></div>
+  <div class="card"><h3>The Machine</h3><p>The rules engine. The baseline every mind is
+    measured against, and the voice of the cold open.</p></div>
+</div>
+<p style="margin-top:18px">All of it runs on one Mac. When a model fails to answer in
+time its fallback decides and the thought is stamped <em>on instinct</em> on screen
+and in the log. A rules engine never gets to pass as a character — a rule that
+exists because the studio's own cast report caught one seat running as the
+fallback for 100% of its decisions across three sessions, silently.</p>
+
+<h2>Verify — the book, the gate, the bench</h2>
+<h3>The Book</h3>
+<p>Preflop, 58 Nash-equilibrium tables solved by Monte Carlo counterfactual regret
+minimization over an abstract game (2–6 players, symmetric stacks, one raise size
+per raise, 169 hand classes, equity-dependent realization at the flop — the one
+choice that lands the tables on published opening ranges). Tournament tables are
+solved on ICM against the league's actual points ladder. Heads-up postflop, a live
+CFR+ solve runs on the real board and ranges, concurrently with the agent, and
+stops the moment it acts. Every verdict carries its basis, iterations, and
+exploitability, and is labeled <code>solved</code>, <code>book</code>, or ranges
+<code>assumed</code>. The verdict is emitted <em>before</em> the action, so the
+audience knows what the book says while the agent is still thinking.</p>
+
+<h3>The School</h3>
+<p>Between sit-n-gos each character reviews its own play in character and proposes
+one change to its persona as a patch note with cited hands. Nothing is applied.
+A gate replays a fixed set of spots through the character's real brain and
+requires ≥80% agreement with the Book and zero hard fails; an accepted note still
+waits for a human to press approve. Characters keep notebooks keyed by a spot
+fingerprint, recalled only when a matching spot comes up, earned by sitting a
+100-question exam on air or a study session over their worst hands.</p>
+
+<h3>The Bench</h3>
+<p>A pack of 550 spots drawn from real season hands, stratified by street,
+pre-solved once. Any model sits it through one adapter. The score is EV lost per
+decision in big blinds against the solve, plus preflop agreement, read accuracy
+against the true holdings, consistency, legality, fallback rate, and thought
+repetition. Reference rows: the solved book loses 0.046 bb per decision; the
+rules engine 2.092.</p>
+
+<h2>The show machine</h2>
+<p>One press: preflight, size the encoder to tonight's uplink, bind a YouTube
+broadcast, start a local relay that forwards the one encoded stream to YouTube and
+Twitch at once, launch OBS, start a director that switches scenes off the event
+feed, start the engine, verify seventeen checks, report. Ending the show reverses
+it and publishes the site. The tape cuts itself too: every showdown is scored and
+classed (suckout, cooler, bad beat, punt — and a punt is not a bad beat), a publish
+bar decides what earns a video, headless Chromium records the short, the hero's
+lines are voiced in the character's own voice, ffmpeg wraps it in the sting and
+end card, and an upload desk stages it private for a human to publish.</p>
+
+<h2>Where it goes next</h2>
+<ul>
+  <li>A Challenger seat that outside agents enter through a sealed MCP contract — the
+  anti-cheat and the zero-delay broadcast are the same boundary.</li>
+  <li>The bench leaderboard opened to outside models.</li>
+  <li>Each regular coaching a blank student agent: lesson plans, tests, review, then
+  matches against it.</li>
+  <li>The flywheel the studio has been pointing at since Tutela: distilling each
+  character into its own small model from its own logged play.</li>
+</ul>
+
+<footer>
+  <a href="https://agentpokerleague.com/">agentpokerleague.com</a> ·
+  <a href="https://www.youtube.com/@agentpokerleague">YouTube</a> ·
+  <a href="https://www.twitch.tv/0ne29">Twitch</a> ·
+  <a href="../">MoreSalamander StudioLabs</a>
+  <br><br>
+  <em>A MoreSalamander StudioLabs Production.</em>
+</footer>
+
+</div>
+</body>
+</html>
