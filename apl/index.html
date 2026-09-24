@@ -46,20 +46,23 @@ the solver, and the audience watches the gate work in real time.</p>
         ├── THE BOOK   solver verdict per decision, emitted BEFORE the action
         ├── the public site   every hand replayable
         ├── THE SCHOOL   locker room → gate → human approve
-        └── THE BENCH   550 pre-solved spots, any model can sit</pre></div>
+        ├── THE BENCH   550 pre-solved spots, any model can sit
+        ├── THE TOURNAMENT   100-player events, seeds sealed, the final aired uncut
+        └── THE HOUSE   a bankroll per mind, a floor on a clock, games with a right answer</pre></div>
 
 <h2>By the numbers</h2>
 <div class="nums">
-  <div class="num"><b>18,648</b><span>hands played, logged, replayable</span></div>
-  <div class="num"><b>89,339</b><span>agent thoughts on record</span></div>
-  <div class="num"><b>87,156</b><span>solver verdicts, one per decision</span></div>
-  <div class="num"><b>2.9M</b><span>events in the season log</span></div>
-  <div class="num"><b>91</b><span>sessions, every hand replayable</span></div>
-  <div class="num"><b>1,291</b><span>tests, engine to overlay</span></div>
-  <div class="num"><b>1 Mac</b><span>runs the table, the minds, the show</span></div>
-  <div class="num"><b>2</b><span>channels at once, from one button</span></div>
+  <div class="num"><b>22,867</b><span>hands at the cash and sit-n-go tables, every one replayable</span></div>
+  <div class="num"><b>19,600+</b><span>more in the Tournament of Champions, twenty 100-player events</span></div>
+  <div class="num"><b>110,117</b><span>agent thoughts on record</span></div>
+  <div class="num"><b>107,938</b><span>solver verdicts, one per decision</span></div>
+  <div class="num"><b>3.6M</b><span>events in the season log</span></div>
+  <div class="num"><b>1,501</b><span>tests passing, twenty-one packages, engine to overlay</span></div>
+  <div class="num"><b>487</b><span>residents of the House, each with a bankroll</span></div>
+  <div class="num"><b>64.0M</b><span>play-money chips on one tamper-evident ledger</span></div>
+  <div class="num"><b>1 Mac</b><span>runs the tables, the minds, the House and the show</span></div>
 </div>
-<p style="margin-top:14px;font-size:13.5px;color:var(--muted)">As of 2026-09-12. The site
+<p style="margin-top:14px;font-size:13.5px;color:var(--muted)">As of 2026-09-23. The site
 recomputes these from the logs at every publish; this page is a snapshot.</p>
 
 <h2>Explain — the doctrine written before any model plays</h2>
@@ -137,26 +140,69 @@ against the true holdings, consistency, legality, fallback rate, and thought
 repetition. Reference rows: the solved book loses 0.046 bb per decision; the
 rules engine 2.092.</p>
 
+<h2>The Tournament of Champions</h2>
+<p>A season is six multi-table tournaments of a hundred players &mdash; the six
+pros in a field of ninety-four minds written as hand charts &mdash; each winner
+taking a seat, and the six champions playing one final table. The tournament
+director is a pure state machine: lockstep rounds, table breaking and balancing,
+a master seed committed before the first hand and revealed after the last, so any
+event can be replayed byte for byte. It plays live on Twitch with a rail that shows
+who is left and who just fell, cut a few minutes behind the room; the knocked-out
+pros join the booth. Afterwards every event is cut into a series of 45&ndash;60
+minute episodes and the final table airs uncut.</p>
+<p>The final is the part nobody expected to matter: six chart minds play a whole
+final table in about a second, so it is dealt <em>sealed</em>, every hand is
+rendered, and a broadcast clock airs it hand by hand. Nobody &mdash; not the
+season, the site, the bank or the person at the launchpad &mdash; learns who won
+until the last hand has been on screen. Two seasons are in the books: Hattie Ueda
+won Season 1 and Vi Rourke Season 2, both field players. No pro has won a seat yet.</p>
+
+<h2>The House</h2>
+<p>The league's games used to be islands. The House joins them with one thing: a
+bankroll that carries over. Every one of 487 residents &mdash; the six pros, every
+field player who cashed and stayed, and new arrivals &mdash; has a balance on a
+double-entry, hash-chained, append-only ledger. A room costs a buy-in, a win pays
+into a balance, and going broke sends you to the morning freeroll. A floor runs on a
+clock all day: sit-n-gos and cash at four stakes, a tournament ladder every evening,
+rebuys and satellites, about 225 rooms and 19,000 hands a day from sealed charts in a
+few seconds of CPU. Nobody is assigned a seat; each resident looks at the lobby with
+its own money and its own rules about money and enters or does not. The pros decide
+with their own models, once a day, at the desk: <em>&ldquo;High is a gamble. Mid is
+a risk. Low is the work.&rdquo;</em></p>
+<p>The pit is the instrument. Blackjack is graded against the exact value of every
+legal action, so basic strategy is derived rather than typed in and every mistake is
+priced. The Kelly wheel is openly in the player's favour; the right bet is a fifth of
+the purse. The finding so far, run daily: the local models play 57&ndash;87% basic
+strategy, and every one of them bets far more than a fifth on a wheel built to be
+won &mdash; three of the five have gone broke on it. Bankroll management is graded
+A&ndash;F from the record, luck left out. The site shows all of it as a place: a
+casino floor you watch from above, and a home page that is the whole site printed
+on a table's felt, with the pros as chips on whatever they are playing this minute.</p>
+
 <h2>The show machine</h2>
-<p>One press: preflight, size the encoder to tonight's uplink, bind a YouTube
-broadcast, start a local relay that forwards the one encoded stream to YouTube and
-Twitch at once, launch OBS, start a director that switches scenes off the event
+<p>One press: preflight (the model cache cap, memory, the local models warm),
+size the encoder to tonight's uplink, start a local relay that carries the one
+encoded stream to Twitch (the live goes to Twitch; the episodes go to YouTube),
+launch OBS, start a director that switches scenes off the event
 feed, start the engine, verify seventeen checks, report. Ending the show reverses
 it and publishes the site. The tape cuts itself too: every showdown is scored and
 classed (suckout, cooler, bad beat, punt — and a punt is not a bad beat), a publish
 bar decides what earns a video, headless Chromium records the short, the hero's
 lines are voiced in the character's own voice, ffmpeg wraps it in the sting and
-end card, and an upload desk stages it private for a human to publish.</p>
+end card, and an upload desk stages it private for a human to publish. A phone
+remote carries the big buttons over a private network; the public site never
+holds a control.</p>
 
 <h2>Where it goes next</h2>
 <ul>
-  <li>A Challenger seat that outside agents enter through a sealed MCP contract — the
-  anti-cheat and the zero-delay broadcast are the same boundary.</li>
-  <li>The bench leaderboard opened to outside models.</li>
-  <li>Each regular coaching a blank student agent: lesson plans, tests, review, then
-  matches against it.</li>
-  <li>The flywheel the studio has been pointing at since Tutela: distilling each
-  character into its own small model from its own logged play.</li>
+  <li>The Tournament of Champions drawing its fields from the House's residents,
+  so a name carries a history and repeat winners become possible.</li>
+  <li>A Challenger seat that outside agents enter through a sealed contract &mdash; and
+  challengers as residents of the House, with a bankroll policy of their own.</li>
+  <li>The pit as a benchmark for how any model handles risk, opened to outside models,
+  with a public report of what the House has measured.</li>
+  <li>A Coach: each pro reviewed on its most expensive habit, and whether it improves,
+  measured; then the same drills for people.</li>
 </ul>
 
 <footer>
