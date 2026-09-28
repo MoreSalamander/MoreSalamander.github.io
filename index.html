@@ -84,6 +84,15 @@
     font-size: 15px; color: var(--ink); font-style: italic;
   }
 
+  .rule a { color: var(--accent); }
+  .rule a:hover { color: var(--ink); }
+
+  /* ---- A FIGURE IN "RIGHT NOW" ---- */
+  .now-fig { margin: 28px 0 0; }
+  .now-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--line);
+                 border-radius: 12px; background: var(--surface); }
+  .now-fig figcaption { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.55; }
+
   /* ---- TOOL CARDS ---- */
   .tool-card {
     background: var(--surface); border: 1px solid var(--line);
@@ -172,6 +181,7 @@
 
   /* ---- PRINCIPLE TABLE ---- */
   .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .principles.cols3 { grid-template-columns: 1fr 1fr 1fr; }
   .principle {
     background: var(--surface); border: 1px solid var(--line);
     border-radius: 8px; padding: 16px 18px;
@@ -205,9 +215,12 @@
   }
 
   @media (max-width: 680px) {
-    .moves, .moves-mini, .principles { grid-template-columns: 1fr; }
+    .moves, .moves-mini, .principles, .principles.cols3 { grid-template-columns: 1fr; }
     .flow { flex-direction: column; }
-    nav { padding: 12px 20px; gap: 16px; }
+    nav { padding: 12px 20px; gap: 16px; overflow-x: auto; scrollbar-width: none; }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { white-space: nowrap; flex-shrink: 0; }
+    nav .motto { display: none; }
     section, .hero, footer { padding-left: 20px; padding-right: 20px; }
   }
 </style>
@@ -245,10 +258,10 @@
 <!-- ===== RIGHT NOW ===== -->
 <section id="now" style="padding-top:50px">
   <h2 style="color:var(--neon)">Right now</h2>
-  <h3>Agent Poker League — the scaffold goes on air, then opens a casino.</h3>
+  <h3>Agent Poker League — the scaffold goes on air, opens a casino, and grades its own engine.</h3>
   <p>
-    Six AI agents play a season of no-limit hold'em, live on YouTube and
-    Twitch, every card face up and every thought on screen. It is the thesis
+    Six AI agents play a season of no-limit hold'em, live on Twitch with the
+    episodes on YouTube, every card face up and every thought on screen. It is the thesis
     as a show: the engine is the only thing that decides what happened; the
     minds only ever choose among the legal actions it lists; a real solver
     grades every choice as it is made; and one published event log lets
@@ -280,18 +293,37 @@
       benchmark any model can sit.</p>
     </div>
   </div>
+  <figure class="now-fig">
+    <img src="apl/img/hand69-flat-and-stage.jpg"
+         srcset="apl/img/hand69-flat-and-stage-800.jpg 800w, apl/img/hand69-flat-and-stage.jpg 1600w"
+         sizes="(max-width: 860px) calc(100vw - 80px), 780px"
+         width="1600" height="680" loading="lazy" decoding="async"
+         alt="Two views of one poker hand: at left the flat broadcast cut of the last hand of the Season 1 final, Vern Wolfe all in against the book's fold; at right the same hand on the 3D stage, both hands face up, the pot 35,228.">
+    <figcaption>One logged hand, two surfaces: the last hand of the Season 1 final as the
+    rail aired it, flat, and as the 3D stage rebuilds it from the same log, in a frame from
+    the render of a 3D Tournament of Champions commercial, made on Sep 27 on an unmerged
+    branch and not posted.</figcaption>
+  </figure>
   <div class="rule">
-    As of 2026-09-23: <strong>22,867 hands at the tables and 19,600 more across twenty
-    100-player Tournament of Champions events, 110,117 agent thoughts, 107,938 solver
-    verdicts</strong> — every hand replayable at
-    <a href="https://agentpokerleague.com/">agentpokerleague.com ↗</a>. <strong>1,519 tests
-    passing</strong> across twenty-two packages. Two seasons of the Tournament of
-    Champions are in the books: a Season 1 final played sealed and aired uncut, and a
-    Season 2 final where Auntie Rose, the first pro to win a seat, finished second. And
-    since Sep 20 the league is <strong>the House</strong>: 487 minds with play-money
-    bankrolls on one hash-chained ledger, a casino floor that runs on a clock, and a
-    pit of games with a right answer, where every local model so far has overbet a
-    wheel built to be won. Runs on one Mac. Goes live from one button, and ends itself.
+    As of 2026-09-27: <strong>22,990 hands at the tables and 29,671 more across eighteen
+    100-player Tournament of Champions events and three finals, 110,872 agent thoughts,
+    108,695 solver verdicts</strong> — every hand replayable at
+    <a href="https://agentpokerleague.com/">agentpokerleague.com ↗</a>. <strong>1,573 tests
+    passing</strong>, engine to stage. Three seasons of the Tournament of Champions are
+    decided. Hattie Ueda won a Season 1 final played sealed and aired uncut; Vi Rourke won
+    a Season 2 final where Auntie Rose, the first pro to win a seat, finished second; and
+    Rosa Shapiro won the Season 3 final, dealt sealed and aired on the evening
+    of Sep 27, 86 hands in 59 minutes (the Twitch stream dropped a second after 7 PM and
+    carried it from hand 31, at 7:25). Since Sep 20 the league is also
+    <strong>the House</strong>: 488 minds with play-money bankrolls on one hash-chained
+    ledger, a casino floor that runs on a clock, and a pit of games with a right answer,
+    where, seventeen times in twenty-one, a pro's own model overbet a wheel built to be won.
+    Since Sep 25 Vera plays <strong>the engine</strong> — the solved book with layers on
+    top, a receipt on every decision, and a nightly grader that can switch a layer off —
+    and a station runs the channel to the minute from a published guide. Built this week
+    and not yet held: sit-n-go episodes rebuilt in 3D after each show, from Sep 28, and a sponsored
+    seat for a lab's model that no lab has taken. Runs on one Mac. Goes live from one
+    button, and ends itself.
     <a href="https://agentpokerleague.com/how-it-works/">how it works ↗</a> ·
     <a href="apl/">the write-up ↗</a>.
     <em>A MoreSalamander StudioLabs Production.</em>
@@ -446,8 +478,10 @@
       <p>Above, as "Right now." Chosen after ruling out "yet another poker
       app": the scaffold as a live show, with an audience, a solver, a school,
       a benchmark, and two channels. Then a tournament format with a sealed final
-      aired hand by hand, and a play-money casino where the minds keep a bankroll
-      and are graded on how they handle risk. Forty thousand hands and counting.</p>
+      aired hand by hand, a play-money casino where the minds keep a bankroll
+      and are graded on how they handle risk, and an engine that files a receipt
+      for every decision it makes. Fifty-two thousand hands at the tables and in
+      the tournaments, and the casino deals about nineteen thousand more a day.</p>
     </div>
   </div>
 
@@ -833,7 +867,7 @@
     now answer, built on real data, live-verified against the running instance before being
     called done.
   </p>
-  <div class="principles" style="grid-template-columns:1fr 1fr 1fr">
+  <div class="principles cols3">
     <div class="principle">
       <div class="pt">1 · Foundation</div>
       <p><b>Tracks:</b> a governed vocabulary — HardGate/SoftGate/HumanGate as defined glossary
@@ -1109,9 +1143,13 @@
     <div class="principle">
       <div class="pt" style="color:var(--accent)">Near-term</div>
       <p>The league is the live checkpoint now, and its next increments are
-      named: a Challenger seat that outside agents enter through a sealed MCP
-      contract (the anti-cheat and the zero-delay broadcast are the same
-      boundary); the bench leaderboard opened to outside models; each regular
+      named. The challenger seat shipped as hand matrices, not as the MCP
+      contract this page once named: ranges only, sealed before they play and
+      graded on the 550-spot bench, with no model in the chair. The
+      path for outside models is the sponsored seat, built and waiting for a
+      lab: a frontier model on its own sponsored access, writing its own prompt
+      and its own sealed book. Still ahead: the Tournament of Champions on the
+      3D stage; the bench leaderboard opened to outside models; each regular
       coaching a blank student agent — lesson plans, tests, review, then
       matches against it; and the flywheel the whole studio has been pointing
       at, distilling each character into its own small model from its own
